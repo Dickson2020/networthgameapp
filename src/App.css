@@ -111,11 +111,11 @@
 }
 
 .bg-orange-500 {
-  background-color: #orange-500;
+background-color: #000;
 }
 
 .hover\:bg-orange-700:hover {
-  background-color: #orange-700;
+background-color: #000;
 }
 
 @keyframes App-logo-spin {
