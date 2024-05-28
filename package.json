@@ -1,4 +1,5 @@
-{{
+{
+  
 "name": "@dynamic-labs/react-18-viem",
 "version": "0.1.0",
 "private": true,
