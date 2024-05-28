@@ -100,8 +100,7 @@ const Leaderboard = () => {
         {showLeaderboard === false && showHome && isConnected ? (
           <DynamicEmbeddedWidget />
         ) : (
-          <DynamicEmbeddedWidget />
-        )}
+null        )}
         {showNetworth && <NetworthPage />}
         {showLeaderboard && <Leaderboard />}
       </div>
