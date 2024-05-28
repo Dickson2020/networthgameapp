@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import LeaderboardScore from './LeaderboardScore';
-import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets, useTokenBalances  } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets  } from "@dynamic-labs/sdk-react-core";
+import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
+
 import './App.css'
 
 const Main = () => {
