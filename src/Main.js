@@ -101,7 +101,6 @@ const Leaderboard = () => {
         {showLeaderboard === false && showHome && isConnected ? (
          <div>
            <NetworthPage />
-          <div style={{width:"10vh",height:"30px"}}></div>
           <DynamicEmbeddedWidget />
 
             </div>
