@@ -19,7 +19,7 @@ const NetworthPage = () => {
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
 <h1><b>Account ID</b>: {userWallets[0].id}</h1>
  
-  
+  <div style={{width:"9px",height:"20px"}}> </div>
 
     </div>
   );
