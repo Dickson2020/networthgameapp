@@ -16,11 +16,11 @@ const Main = () => {
 const NetworthPage = () => {
   return (
     <div>
-      <h1 style={{fontSize:"35px"}}><b>Current Net Worth</b>: {netWorthValue} Net</h1>
-<h1>Account ID: {userWallets[0].id}</h1>
+      <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
+<h1><b>Account ID</b>: {userWallets[0].id}</h1>
  
-      <p>This is your current net worth balance.</p>
-
+  </br>
+  </br>
 
     </div>
   );
