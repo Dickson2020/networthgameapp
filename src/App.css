@@ -28,6 +28,56 @@
   color: #61dafb;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, #gray-900, #black);
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.text-white {
+  color: #white;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.bg-orange-500 {
+  background-color: #orange-500;
+}
+
+.hover\:bg-orange-700:hover {
+  background-color: #orange-700;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
