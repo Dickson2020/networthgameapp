@@ -1,23 +1,18 @@
-import { DynamicWidget, useWallet } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, useWallet, DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 const Main = () => {
   const { isConnected, account } = useWallet();
+  const dynamicContext = useDynamicContext();
 
-  if (isConnected) {
+  if (dynamicContext?.wallet?.connected) {
     // Fetch token balances for the connected account
     const tokenBalances = getTokenBalances(account); // Implement this function to fetch token balances
 
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center text-white">
         <div className="flex flex-col items-center justify-center text-center">
-          <h1 className="text-4xl font-bold mb-4">Networth + Web3 by Dickson</h1>
-          <div className="token-balances">
-            {tokenBalances.map((tokenBalance) => (
-              <div key={tokenBalance.tokenAddress}>
-                <p>{tokenBalance.tokenSymbol}: {tokenBalance.balance}</p>
-              </div>
-            ))}
-          </div>
+          <h1 className="text-4xl font-bold mb-4">Hi, welcome</h1>
+          <DynamicEmbeddedWidget />
         </div>
       </div>
     );
