@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import LeaderboardScore from './LeaderboardScore';
-import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets, useTokenBalances  } from "@dynamic-labs/sdk-react-core";
 import './App.css'
 
 const Main = () => {
   const userWallets = useUserWallets()
+  const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
   const [showNetworth, setShowNetworth] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -16,6 +17,14 @@ const NetworthPage = () => {
   return (
     <div>
       <h1 style={{fontSize:"35px"}}><b>Current Net Worth</b>: {netWorthValue} Net</h1>
+
+   <div>
+      {tokenBalances.map((tokenBalance) => (
+        <div key={tokenBalance.tokenAddress}>
+          {tokenBalance.tokenName}: {tokenBalance.balance}
+        </div>
+      ))}
+    </div>
       <p>This is your current net worth balance.</p>
 
 
