@@ -19,8 +19,7 @@ const NetworthPage = () => {
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
 <h1><b>Account ID</b>: {userWallets[0].id}</h1>
  
-  </br>
-  </br>
+  
 
     </div>
   );
@@ -102,6 +101,7 @@ const Leaderboard = () => {
         {showLeaderboard === false && showHome && isConnected ? (
          <div>
            <NetworthPage />
+          <div style={{width:"100vh",height:"30px"}}></div>
           <DynamicEmbeddedWidget />
 
             </div>
