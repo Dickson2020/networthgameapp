@@ -108,8 +108,9 @@ const Leaderboard = () => {
 
             </div>
         ) : (
+          <div>
                   {isConnected == false && <DynamicEmbeddedWidget />}
-
+</div>
         )}
         {showLeaderboard && <Leaderboard />}
       </div>
