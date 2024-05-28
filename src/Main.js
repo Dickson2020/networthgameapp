@@ -10,11 +10,12 @@ const Main = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showHome, setShowHome] = useState(true);
 
-  
+    const [netWorthValue, updateNetworthValue] = useState(0);
+
 const NetworthPage = () => {
   return (
     <div>
-      <h2>Net Worth: 0.00 Net</h2>
+      <h1>Net Worth: {netWorthValue} Net</h1>
       <p>This is your current net worth balance.</p>
 
               <DynamicEmbeddedWidget />
@@ -90,7 +91,6 @@ const Leaderboard = () => {
           <div className="flex justify-center mb-4">
             <div className="flex gap-4">
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewNetworth}>View Networth</button>
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>View Leaderboard</button>
             </div>
           </div>
@@ -98,10 +98,10 @@ const Leaderboard = () => {
           <h4>Networth Game Project</h4>
         )}
         {showLeaderboard === false && showHome && isConnected ? (
+          <NetworthPage />
           <DynamicEmbeddedWidget />
         ) : (
 null        )}
-        {showNetworth && <NetworthPage />}
         {showLeaderboard && <Leaderboard />}
       </div>
     </div>
