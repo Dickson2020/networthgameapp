@@ -98,14 +98,18 @@ const Leaderboard = () => {
         ) : (
           <h4>Networth Game Project</h4>
         )}
+        {showLeaderboard === false && showHome && isConnected &&  <NetworthPage />
+}
+
+
         {showLeaderboard === false && showHome && isConnected ? (
          <div>
-           <NetworthPage />
           <DynamicEmbeddedWidget />
 
             </div>
         ) : (
-null        )}
+          <DynamicEmbeddedWidget />
+        )}
         {showLeaderboard && <Leaderboard />}
       </div>
     </div>
