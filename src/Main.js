@@ -98,8 +98,11 @@ const Leaderboard = () => {
           <h4>Networth Game Project</h4>
         )}
         {showLeaderboard === false && showHome && isConnected ? (
-          <NetworthPage />
+         <div>
+           <NetworthPage />
           <DynamicEmbeddedWidget />
+
+            </div>
         ) : (
 null        )}
         {showLeaderboard && <Leaderboard />}
