@@ -10,6 +10,59 @@ const Main = () => {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showHome, setShowHome] = useState(true);
 
+  
+const NetworthPage = () => {
+  return (
+    <div>
+      <h2>Net Worth: 0.00 Net</h2>
+      <p>This is your current net worth balance.</p>
+
+              <DynamicEmbeddedWidget />
+
+    </div>
+  );
+};
+const Leaderboard = () => {
+  const leaderboardData = [
+    {
+      rank: 1,
+      address: '0x...',
+      netWorth: 10000,
+      change24h: 10,
+      tokens: [
+        { symbol: 'ETH', balance: 100 },
+        { symbol: 'BTC', balance: 50 },
+      ],
+    },
+    {
+      rank: 2,
+      address: '0x...',
+      netWorth: 8000,
+      change24h: -5,
+      tokens: [
+        { symbol: 'ETH', balance: 80 },
+        { symbol: 'BTC', balance: 40 },
+      ],
+    },
+    // ...
+  ];
+
+  return (
+    <div className="leaderboard">
+      {leaderboardData.map((data, index) => (
+        <LeaderboardScore
+          key={index}
+          rank={data.rank}
+          address={data.address}
+          netWorth={data.netWorth}
+          change24h={data.change24h}
+          tokens={data.tokens}
+        />
+      ))}
+    </div>
+  );
+};
+
   const handleViewNetworth = () => {
     setShowNetworth(true);
     setShowHome(false);
@@ -47,10 +100,10 @@ const Main = () => {
         {showHome && isConnected ? (
           <DynamicEmbeddedWidget />
         ) : (
-          <DynamicWidget />
+          <DynamicEmbeddedWidget />
         )}
         {showNetworth && <NetworthPage />}
-        {showLeaderboard && <LeaderboardPage />}
+        {showLeaderboard && <Leaderboard />}
       </div>
     </div>
   );
