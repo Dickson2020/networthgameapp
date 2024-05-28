@@ -1,5 +1,5 @@
 import { DynamicWidget, DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
-
+import './App.css'
 const Main = () => {
   const dynamicContext = useDynamicContext();
 
