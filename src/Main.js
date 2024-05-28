@@ -84,7 +84,7 @@ const Leaderboard = () => {
   const isConnected = userWallets.some((wallet) => wallet.connected)
 
   return (
-    <div style={{width:"100vh"}}>
+    <div>
       <div className="flex flex-col items-center justify-center text-center">
         {isConnected ? (
           <div className="flex justify-center mb-4">
