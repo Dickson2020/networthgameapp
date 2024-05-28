@@ -92,7 +92,7 @@ const Leaderboard = () => {
           <div className="flex justify-center mb-4">
             <div className="flex gap-4">
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>View Leaderboard</button>
+              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}> Leaderboard</button>
             </div>
           </div>
         ) : (
@@ -108,7 +108,8 @@ const Leaderboard = () => {
 
             </div>
         ) : (
-          <DynamicEmbeddedWidget />
+                  {isConnected == false && <DynamicEmbeddedWidget />}
+
         )}
         {showLeaderboard && <Leaderboard />}
       </div>
