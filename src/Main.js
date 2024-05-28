@@ -97,7 +97,7 @@ const Leaderboard = () => {
         ) : (
           <h4>Networth Game Project</h4>
         )}
-        {showHome && isConnected ? (
+        {showLeaderboard === false && showHome && isConnected ? (
           <DynamicEmbeddedWidget />
         ) : (
           <DynamicEmbeddedWidget />
