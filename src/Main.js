@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets  } from "@dynamic-labs/sdk-react-core";
-//import supabase from './supabase'
+import supabase from './supabase'
 import './App.css'
 
 const Main = () => {
