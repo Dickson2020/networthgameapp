@@ -16,7 +16,7 @@ const Main = () => {
     const [userIdValue ,updateUserIdValue] = useState("")
   
   
-/*
+
 const checkUserExists = async () => {
   const { data, error } = await supabase
     .from('networth') // Replace with your actual table name
@@ -27,7 +27,7 @@ const checkUserExists = async () => {
   if (error) {
     console.error(error);
   } else if (data) {
-    console.log(`User with ID ${userId} already exists`);
+    alert(`User with ID ${userIdValue} : Increasing networth using Supabase and Prisma`);
 const currentCounterValue = data.counter;
     const updatedCounterValue = currentCounterValue + 1;
     const { error: updateError } = await supabase
@@ -38,7 +38,7 @@ const currentCounterValue = data.counter;
     if (updateError) {
       console.error(updateError);
     } else {
-      console.log(`Counter value updated successfully`);
+      alery(`networth updated successfully`);
 updateNetworthValue(updatedCounterValue)
     }
   
@@ -51,18 +51,18 @@ updateNetworthValue(updatedCounterValue)
     if (insertError) {
       console.error(insertError);
     } else {
-      console.log(`User with ID ${userId} inserted successfully`);
+      alert(`User with ID ${userIdValue} recorded in Supabase`);
     }
   }
 };
 
-checkUserExists();
 
-  */
 
+  
 
 const NetworthPage = () => {
   handleUpdateUserId();
+  checkUserExists()
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
