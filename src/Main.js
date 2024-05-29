@@ -13,6 +13,9 @@ const Main = () => {
 
     const [netWorthValue, updateNetworthValue] = useState(0);
 
+  const userId = userWallets[0].id; // Replace with the actual user ID you want to check
+
+  
 /*
 const checkUserExists = async () => {
   const { data, error } = await supabase
@@ -56,8 +59,6 @@ updateNetworthValue(updatedCounterValue)
 checkUserExists();
 
   */
-
-//const userId = userWallets[0].id; // Replace with the actual user ID you want to check
 
 
 const NetworthPage = () => {
