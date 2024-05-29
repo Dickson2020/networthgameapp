@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets  } from "@dynamic-labs/sdk-react-core";
-import supabase from './supabase'
+//import supabase from './supabase'
 import './App.css'
 
 const Main = () => {
@@ -13,9 +13,51 @@ const Main = () => {
 
     const [netWorthValue, updateNetworthValue] = useState(0);
 
+/*
+const checkUserExists = async () => {
+  const { data, error } = await supabase
+    .from('networth') // Replace with your actual table name
+    .select('user_id')
+    .eq('id', userId)
+    .single();
 
+  if (error) {
+    console.error(error);
+  } else if (data) {
+    console.log(`User with ID ${userId} already exists`);
+const currentCounterValue = data.counter;
+    const updatedCounterValue = currentCounterValue + 1;
+    const { error: updateError } = await supabase
+      .from('networth')
+      .update({ counter: updatedCounterValue })
+      .eq('user_id', userId);
 
-const userId = userWallets[0].id; // Replace with the actual user ID you want to check
+    if (updateError) {
+      console.error(updateError);
+    } else {
+      console.log(`Counter value updated successfully`);
+updateNetworthValue(updatedCounterValue)
+    }
+  
+  } else {
+    const newUser = { user_id: userId, counter: counterValue}; // Replace with the actual user data
+    const { user_id: insertError } = await supabase
+      .from('networth')
+      .insert(newUser);
+
+    if (insertError) {
+      console.error(insertError);
+    } else {
+      console.log(`User with ID ${userId} inserted successfully`);
+    }
+  }
+};
+
+checkUserExists();
+
+  */
+
+//const userId = userWallets[0].id; // Replace with the actual user ID you want to check
 
 
 const NetworthPage = () => {
