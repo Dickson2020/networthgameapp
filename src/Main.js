@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets  } from "@dynamic-labs/sdk-react-core";
 import supabase from './supabase'
@@ -16,7 +16,13 @@ const Main = () => {
     const [userIdValue ,updateUserIdValue] = useState("")
   
   
-
+useEffect(() => {
+    if (userWallets.length > 0) {
+      handleUpdateUserId();
+      checkUserExists();
+    }
+  }, [userWallets]);
+  
 const checkUserExists = async () => {
   const { data, error } = await supabase
     .from('networth') // Replace with your actual table name
@@ -38,7 +44,7 @@ const currentCounterValue = data.counter;
     if (updateError) {
       console.error(updateError);
     } else {
-      alery(`networth updated successfully`);
+      alert(`networth updated successfully`);
 updateNetworthValue(updatedCounterValue)
     }
   
@@ -61,8 +67,7 @@ updateNetworthValue(updatedCounterValue)
   
 
 const NetworthPage = () => {
-  handleUpdateUserId();
-  checkUserExists()
+  
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
