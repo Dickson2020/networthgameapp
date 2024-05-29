@@ -12,7 +12,8 @@ const Main = () => {
   const [showHome, setShowHome] = useState(true);
 
     const [netWorthValue, updateNetworthValue] = useState(0);
-
+ // Replace with the actual user ID you want to check
+    const [userIdValue ,updateUserIdValue] = useState("")
   
   
 /*
@@ -20,7 +21,7 @@ const checkUserExists = async () => {
   const { data, error } = await supabase
     .from('networth') // Replace with your actual table name
     .select('user_id')
-    .eq('id', userId)
+    .eq('id', userIdValue)
     .single();
 
   if (error) {
@@ -32,7 +33,7 @@ const currentCounterValue = data.counter;
     const { error: updateError } = await supabase
       .from('networth')
       .update({ counter: updatedCounterValue })
-      .eq('user_id', userId);
+      .eq('user_id', userIdValue);
 
     if (updateError) {
       console.error(updateError);
@@ -42,7 +43,7 @@ updateNetworthValue(updatedCounterValue)
     }
   
   } else {
-    const newUser = { user_id: userId, counter: counterValue}; // Replace with the actual user data
+    const newUser = { user_id: userIdValue, counter: counterValue}; // Replace with the actual user data
     const { user_id: insertError } = await supabase
       .from('networth')
       .insert(newUser);
@@ -61,6 +62,7 @@ checkUserExists();
 
 
 const NetworthPage = () => {
+  handleUpdateUserId();
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
@@ -116,6 +118,10 @@ const Leaderboard = () => {
     setShowNetworth(true);
     setShowHome(false);
     setShowLeaderboard(false);
+  };
+
+const handleUpdateUserId = () => {
+    updateUserIdValue(userWallets[0].id)
   };
 
   const handleViewHome = () => {
