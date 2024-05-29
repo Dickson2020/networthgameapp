@@ -39,6 +39,7 @@ const currentCounterValue = data.counter;
       console.error(updateError);
     } else {
       console.log(`Counter value updated successfully`);
+updateNetworthValue(updatedCounterValue)
     }
   
   } else {
