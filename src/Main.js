@@ -31,7 +31,7 @@ const checkUserExists = async () => {
     .single();
 
   if (error) {
-    console.error(error);
+    alert(error);
   } else if (data) {
     alert(`User with ID ${userIdValue} : Increasing networth using Supabase and Prisma`);
 const currentCounterValue = data.counter;
@@ -42,7 +42,7 @@ const currentCounterValue = data.counter;
       .eq('user_id', userIdValue);
 
     if (updateError) {
-      console.error(updateError);
+      alert(updateError);
     } else {
       alert(`networth updated successfully`);
 updateNetworthValue(updatedCounterValue)
@@ -55,7 +55,7 @@ updateNetworthValue(updatedCounterValue)
       .insert(newUser);
 
     if (insertError) {
-      console.error(insertError);
+      alert(insertError);
     } else {
       alert(`User with ID ${userIdValue} recorded in Supabase`);
     }
@@ -128,7 +128,7 @@ const Leaderboard = () => {
 
 const handleUpdateUserId = () => {
     updateUserIdValue(userWallets[0].id)
-  alert("User id stored")
+ // alert("User id stored")
 };
 
   const handleViewHome = () => {
