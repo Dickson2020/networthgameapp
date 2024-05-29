@@ -6,13 +6,45 @@ import './App.css'
 
 const Main = () => {
   const userWallets = useUserWallets()
-
+  const counterValue = 0;
   const [showNetworth, setShowNetworth] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showHome, setShowHome] = useState(true);
 
     const [netWorthValue, updateNetworthValue] = useState(0);
 
+
+
+const userId = userWallets[0].id; // Replace with the actual user ID you want to check
+
+const checkUserExists = async () => {
+  const { data, error } = await supabase
+    .from('networth') // Replace with your actual table name
+    .select('user_id')
+    .eq('id', userId)
+    .single();
+
+  if (error) {
+    console.error(error);
+  } else if (data) {
+    console.log(`User with ID ${userId} already exists`);
+  } else {
+    const newUser = { user_id: userId, counter: counterValue}; // Replace with the actual user data
+    const { user_id: insertError } = await supabase
+      .from('networth')
+      .insert(newUser);
+
+    if (insertError) {
+      console.error(insertError);
+    } else {
+      console.log(`User with ID ${userId} inserted successfully`);
+    }
+  }
+};
+
+checkUserExists();
+
+  
 const NetworthPage = () => {
   return (
     <div>
