@@ -67,7 +67,8 @@ updateNetworthValue(updatedCounterValue)
   
 
 const NetworthPage = () => {
-  
+  handleUpdateUserId()
+  checkUserExists();
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
@@ -127,7 +128,8 @@ const Leaderboard = () => {
 
 const handleUpdateUserId = () => {
     updateUserIdValue(userWallets[0].id)
-  };
+  alert("User id stored")
+};
 
   const handleViewHome = () => {
     setShowHome(true);
