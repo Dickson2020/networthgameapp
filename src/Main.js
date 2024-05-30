@@ -26,7 +26,7 @@ useEffect(() => {
 const checkUserExists = async () => {
   const { data, error } = await supabase
     .from('networth') // Replace with your actual table name
-    .select('user_id')
+    .select()
     .eq('user_id', JSON.stringify(userIdValue) )
     .single();
 
