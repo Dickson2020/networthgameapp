@@ -53,7 +53,7 @@ const currentCounterValue = JSON.parse( Number( data.counter))
 
     const { error: updateError } = await supabase
       .from('networth')
-      .update({ counter:  JSON.stringify(updatedCounterValue)})
+      .update({ counter:  (updatedCounterValue).toString()})
       .eq('user_id', userIdValue);
 
     if (updateError) {
