@@ -42,11 +42,11 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
       alert(`User with ID ${userIdValue} recorded in Supabase`);
     }
 
-  }
+  
   } else if (data) {
     alert(JSON.stringify( data ))
 
-const currentCounterValue = JSON.parse( Number( data.counter)) ;
+const currentCounterValue = JSON.parse( Number( data.counter)) 
     const updatedCounterValue = currentCounterValue + 1;
 
     const { error: updateError } = await supabase
@@ -65,7 +65,7 @@ updateNetworthValue(updatedCounterValue)
   } else {
     
   }
-};
+}
 
 
 
