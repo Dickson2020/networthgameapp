@@ -44,11 +44,11 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
 
   }
   } else if (data) {
-    alert(`User with ID ${userIdValue} : Increasing networth using Supabase and Prisma`);
+    alert(JSON.stringify( data ))
+
 const currentCounterValue = JSON.parse( Number( data.counter)) ;
     const updatedCounterValue = currentCounterValue + 1;
 
-  alert( "counter value: " + data.counter)
     const { error: updateError } = await supabase
       .from('networth')
       .update({ counter: updatedCounterValue })
