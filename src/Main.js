@@ -59,7 +59,7 @@ const currentCounterValue = JSON.parse( Number( data.counter))
     if (updateError) {
       alert("update counter error: "+JSON.stringify(updateError));
     } else {
-      alert(`networth updated successfully`);
+      alert("networth updated successfully: " + userIdValue );
 updateNetworthValue(updatedCounterValue)
       
     }
