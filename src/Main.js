@@ -141,6 +141,11 @@ const Main = ({ isFirstTime }) => {
       <div className="flex flex-col items-center justify-center text-center">
         {isConnected ? (
           <div className="flex justify-center mb-4">
+    {
+userWallets.forEach((wallet) => {
+  <p>{wallet.tokenBalances}</p> 
+});
+    }
             <div className="flex gap-4">
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
