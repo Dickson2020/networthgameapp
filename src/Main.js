@@ -30,7 +30,7 @@ const checkUserExists = async () => {
     .eq('user_id', JSON.stringify(userIdValue) )
     .single();
 
-  if (error) {
+  if (error && JSON.stringify( userIdValue) != null && JSON.stringify( userIdValue) != "") {
 const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringify( netWorthValue) }; // Replace with the actual user data
     const { error: insertError } = await supabase
       .from('networth')
@@ -41,9 +41,11 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
     } else {
       alert(`User with ID ${userIdValue} recorded in Supabase`);
     }
+
+  }
   } else if (data) {
     alert(`User with ID ${userIdValue} : Increasing networth using Supabase and Prisma`);
-const currentCounterValue = data.counter;
+const currentCounterValue = Number( data.counter) ;
     const updatedCounterValue = currentCounterValue + 1;
     const { error: updateError } = await supabase
       .from('networth')
@@ -55,6 +57,7 @@ const currentCounterValue = data.counter;
     } else {
       alert(`networth updated successfully`);
 updateNetworthValue(updatedCounterValue)
+      
     }
   
   } else {
