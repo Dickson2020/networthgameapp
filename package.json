@@ -12,7 +12,8 @@
 "viem": "*",
   "@supabase/supabase-js": "*",
   "wagmi": "*",
-  "@dylanintech/flywheel-leaderboard": "^1.0.0"
+    "redis": "*",
+
 
 },
 "overrides": {
