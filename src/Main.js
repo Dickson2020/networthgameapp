@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
 
-import { useDynamicContext } from '@dynamic-labs/sdk-react-core';
 
 import supabase from './supabase';
 import './App.css';
@@ -15,13 +14,7 @@ const Main = () => {
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
 
- const { events } = useDynamicContext();
 
-  events.onAuthSuccess = (args) => {
-    alert('onAuthSuccess was called', args);
-    const userId = args.primaryWallet.address;
-    //checkUserExists(userId);
-  };
 
   useEffect(() => {
     if (userWallets.length > 0) {
