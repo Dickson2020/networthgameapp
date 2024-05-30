@@ -30,7 +30,7 @@ const checkUserExists = async () => {
     .eq('user_id', JSON.stringify(userIdValue) )
     .single();
 
-  if (error && JSON.stringify( userIdValue) != null && JSON.stringify( userIdValue) != "") {
+  if (error && JSON.stringify( userIdValue) !== null && JSON.stringify( userIdValue) !== "") {
 const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringify( netWorthValue) }; // Replace with the actual user data
     const { error: insertError } = await supabase
       .from('networth')
@@ -45,8 +45,10 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
   }
   } else if (data) {
     alert(`User with ID ${userIdValue} : Increasing networth using Supabase and Prisma`);
-const currentCounterValue = Number( data.counter) ;
+const currentCounterValue = JSON.parse( Number( data.counter)) ;
     const updatedCounterValue = currentCounterValue + 1;
+
+  alert( "counter value: " + data.counter)
     const { error: updateError } = await supabase
       .from('networth')
       .update({ counter: updatedCounterValue })
@@ -70,8 +72,8 @@ updateNetworthValue(updatedCounterValue)
   
 
 const NetworthPage = () => {
-  handleUpdateUserId()
-  checkUserExists();
+ // handleUpdateUserId()
+  //checkUserExists();
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
