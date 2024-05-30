@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
+import redis from 'redis';
 
 
 import supabase from './supabase';
@@ -14,7 +15,14 @@ const Main = ({ isFirstTime }) => {
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
 
+const client = redis.createClient({
+  host: 'localhost',
+  port: 6379,
+});
 
+client.on('connect', () => {
+  console.log('Connected to Redis');
+});
 
   useEffect(() => {
     if (userWallets.length > 0) {
@@ -39,6 +47,15 @@ const Main = ({ isFirstTime }) => {
     if (error) {
       console.error(error);
     } else {
+
+      client.SET('key', 'value', (err, reply) => {
+  console.log(reply);
+});
+
+client.HMSET('leaderboard', data, (err, reply) => {
+  console.log(reply);
+});
+      
       setLeaderboardData(data);
     }
   };
