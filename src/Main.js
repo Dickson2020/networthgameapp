@@ -75,8 +75,8 @@ updateNetworthValue(updatedCounterValue)
   
 
 const NetworthPage = () => {
-// handleUpdateUserId()
-  //checkUserExists();
+handleUpdateUserId()
+  checkUserExists();
   return (
     <div>
       <h1 style={{fontSize:"25px"}}><b> Net Worth</b>: {netWorthValue} Net</h1>
