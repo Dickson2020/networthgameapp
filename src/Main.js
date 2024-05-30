@@ -33,7 +33,7 @@ const checkUserExists = async () => {
       alert(JSON.stringify( data ))
 
   if (error && JSON.stringify( userIdValue) !== null && JSON.stringify( userIdValue).length > 6) {
-const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringify( netWorthValue) }; // Replace with the actual user data
+const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringify( 1 ) }; // Replace with the actual user data
     const { error: insertError } = await supabase
       .from('networth')
       .insert(newUser);
@@ -48,13 +48,12 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
   } else if (data) {
    
 const currentCounterValue = JSON.parse( Number( data.counter)) 
-    alert("counter :"+currentCounterValue)
 
     const updatedCounterValue = currentCounterValue + 1;
 
     const { error: updateError } = await supabase
       .from('networth')
-      .update({ counter: updatedCounterValue })
+      .update({ counter:  JSON.stringify(updatedCounterValue)})
       .eq('user_id', userIdValue);
 
     if (updateError) {
