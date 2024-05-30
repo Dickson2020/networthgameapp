@@ -12,7 +12,9 @@
 "viem": "*",
   "@supabase/supabase-js": "*",
   "wagmi": "*",
-"redis": "^4.3.1"
+"redis": "^4.3.1",
+    "crypto-browserify": "^3.12.0"
+
 
 
 },
