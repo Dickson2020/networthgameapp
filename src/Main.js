@@ -39,8 +39,8 @@ const Main = () => {
         console.log(`User with ID ${userId} recorded in Supabase`);
       }
     } else if (data) {
-      const currentCounterValue = data.counter;
-      alert(data.counter)
+      const currentCounterValue = parseInt(data.counter);
+     // alert(data.counter)
       const updatedCounterValue = currentCounterValue + 1;
       const { error: updateError } = await supabase
         .from('networth')
