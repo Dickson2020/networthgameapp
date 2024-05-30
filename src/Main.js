@@ -3,7 +3,6 @@ import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
 import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
 
-const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
 import supabase from './supabase';
 import './App.css';
@@ -15,6 +14,8 @@ const Main = () => {
   const [showHome, setShowHome] = useState(true);
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
+  const { tokenBalances, isLoading, isError, error } = useTokenBalances();
+
 
   useEffect(() => {
     if (userWallets.length > 0) {
