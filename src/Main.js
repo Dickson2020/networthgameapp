@@ -24,6 +24,27 @@ const Main = ({ isFirstTime }) => {
     }
   }, [userWallets]);
 
+    const [leaderboardData, setLeaderboardData] = useState([]);
+
+  useEffect(() => {
+    fetchLeaderboardData();
+  }, []);
+
+  const fetchLeaderboardData = async () => {
+    const { data, error } = await supabase
+      .from('networth')
+      .select()
+      .order('counter', { ascending: false });
+
+    if (error) {
+      console.error(error);
+    } else {
+      setLeaderboardData(data);
+    }
+  };
+
+  
+
   const checkUserExists = async (userId) => {
     const { data, error } = await supabase
       .from('networth') // Replace with your actual table name
@@ -76,45 +97,22 @@ const Main = ({ isFirstTime }) => {
   };
 
   const Leaderboard = () => {
-    const leaderboardData = [
-      {
-        rank: 1,
-        address: '0x...',
-        netWorth: 10000,
-        change24h: 10,
-        tokens: [
-          { symbol: 'ETH', balance: 100 },
-          { symbol: 'BTC', balance: 50 },
-        ],
-      },
-      {
-        rank: 2,
-        address: '0x...',
-        netWorth: 8000,
-        change24h: -5,
-        tokens: [
-          { symbol: 'ETH', balance: 80 },
-          { symbol: 'BTC', balance: 40 },
-        ],
-      },
-      // ...
-    ];
 
-    return (
-      <div className="leaderboard">
-        {leaderboardData.map((data, index) => (
-          <LeaderboardScore
-            key={index}
-            rank={data.rank}
-            address={data.address}
-            netWorth={data.netWorth}
-            change24h={data.change24h}
-            tokens={data.tokens}
-          />
-        ))}
-      </div>
-    );
-  };
+  return (
+    <div className="leaderboard">
+      {leaderboardData.map((data, index) => (
+        <LeaderboardScore
+          key={index}
+          rank={data.counter}
+          address={data.user_id}
+          netWorth={data.counter}
+          change24h=""
+          tokens=""
+        />
+      ))}
+    </div>
+  );
+};
 
   const handleViewNetworth = () => {
     setShowNetworth(true);
