@@ -6,7 +6,7 @@ import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-l
 import supabase from './supabase';
 import './App.css';
 
-const Main = () => {
+const Main = ({ isFirstTime }) => {
   const userWallets = useUserWallets();
   const [showNetworth, setShowNetworth] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -43,6 +43,8 @@ const Main = () => {
         console.log(`User with ID ${userId} recorded in Supabase`);
       }
     } else if (data) {
+        if (isFirstTime) {
+
       const currentCounterValue = parseInt(data.counter);
      // alert(data.counter)
        if (netWorthValue === 0) {
@@ -59,6 +61,8 @@ const Main = () => {
         updateNetworthValue(updatedCounterValue);
       }
        }
+    }
+    
     }
   };
 
