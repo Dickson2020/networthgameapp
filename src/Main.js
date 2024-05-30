@@ -46,10 +46,10 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
 
   
   } else if (data) {
-    alert(JSON.stringify( data ))
-      checkUserExists();
-
+   
 const currentCounterValue = JSON.parse( Number( data.counter)) 
+    alert("counter :"+currentCounterValue)
+
     const updatedCounterValue = currentCounterValue + 1;
 
     const { error: updateError } = await supabase
