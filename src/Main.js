@@ -45,6 +45,7 @@ const Main = () => {
     } else if (data) {
       const currentCounterValue = parseInt(data.counter);
      // alert(data.counter)
+       if (netWorthValue === 0) {
       const updatedCounterValue = currentCounterValue + 1;
       const { error: updateError } = await supabase
         .from('networth')
@@ -57,6 +58,7 @@ const Main = () => {
         console.log("Networth updated successfully:", userId);
         updateNetworthValue(updatedCounterValue);
       }
+       }
     }
   };
 
