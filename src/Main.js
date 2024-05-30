@@ -50,7 +50,8 @@ const newUser = { user_id: JSON.stringify( userIdValue) , counter: JSON.stringif
 const currentCounterValue = JSON.parse(data).counter
 
     const updatedCounterValue = currentCounterValue + 1;
-
+alert("user id: "+ JSON.parse(data).id)
+alert((data))
     const { error: updateError } = await supabase
       .from('networth')
       .update({ counter:  (updatedCounterValue).toString()})
