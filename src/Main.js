@@ -38,6 +38,13 @@ client.on('connect', () => {
     fetchLeaderboardData();
   }, []);
 
+  useEffect(() => {
+    client.HGETALL('leaderboard', (err, data) => {
+            setLeaderboardData(data);
+
+    });
+  }, []);
+
   const fetchLeaderboardData = async () => {
     const { data, error } = await supabase
       .from('networth')
