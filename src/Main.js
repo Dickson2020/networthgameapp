@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
+import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
+
+const { tokenBalances, isLoading, isError, error } = useTokenBalances();
+
 import supabase from './supabase';
 import './App.css';
 
