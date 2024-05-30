@@ -12,7 +12,7 @@
 "viem": "*",
   "@supabase/supabase-js": "*",
   "wagmi": "*",
-    "redis": "*",
+    "redis": "*"
 
 
 },
