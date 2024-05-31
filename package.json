@@ -12,7 +12,8 @@
   "react-scripts": "^5.0.1",
   "viem": "^2.8.4",
   "wagmi": "^2.5.7",
-  "@supabase/supabase-js": "*"
+  "@supabase/supabase-js": "*",
+  "@prisma/client": "^4.0.0"
 },
   "overrides": {
     "typescript": "^5.0.4"
@@ -42,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "prisma": "^4.0.0"
   }
       }
