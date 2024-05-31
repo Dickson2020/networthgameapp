@@ -5,7 +5,7 @@ import supabase from './supabase';
 
 import Main from "./Main";
 
-export default const App = () => {
+const App = () => {
   const [isFirstTime, setIsFirstTime] = useState(false);
 
   const checkUserExists = async (userId) => {
@@ -68,4 +68,4 @@ export default const App = () => {
   );
 };
 
- 
+ export default App
