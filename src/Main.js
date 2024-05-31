@@ -89,6 +89,8 @@ const prisma = new PrismaClient();
   }
   };
   */
+
+    /*
   const checkUserExists = async (userId) => {
   try {
     const user = await prisma.networth.findUnique({
@@ -121,7 +123,7 @@ const prisma = new PrismaClient();
   }
 };
     
-
+*/
   const NetworthPage = () => {
     return (
       <div>
