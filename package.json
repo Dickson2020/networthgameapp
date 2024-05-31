@@ -15,7 +15,7 @@
   "@supabase/supabase-js": "*"
 },
   "overrides": {
-    "typescript": "*"
+    "typescript": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
