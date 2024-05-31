@@ -95,7 +95,6 @@ const Main = ({ isFirstTime }) => {
     return (
       <div>
         <h1 style={{ fontSize: "25px" }}><b>Net Worth</b>: {netWorthValue} Net</h1>
-    </br>
             <h1 style={{ fontSize: "25px" }}><b>My Multiplier</b>: {netWorthValue} Net</h1>
 
         {userWallets[0] && <h1><b>Account ID</b>: {userWallets[0].id}</h1>}
