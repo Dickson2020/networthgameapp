@@ -35,7 +35,7 @@ const Main = ({ isFirstTime }) => {
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
-      checkUserExists(userId);
+    //  checkUserExists(userId);
     }
   }, [userWallets]);
 
@@ -69,39 +69,19 @@ const Main = ({ isFirstTime }) => {
       .eq('user_id', userId)
       .single();
 
-    if (error && userId.toString().length > 1) {
-      const newUser = { user_id: userId, counter: 1 }; // Replace with the actual user data
-      const { error: insertError } = await supabase
-        .from('networth')
-        .insert(newUser);
-
-      if (insertError) {
-        console.error("Record error:", insertError);
-      } else {
-        console.log(`User with ID ${userId} recorded in Supabase`);
-      }
-    } else if (data) {
+     if (data) {
         
 
       const currentCounterValue = parseInt(data.counter);
-     // alert(data.counter)
-       if (netWorthValue === 0) {
-      const updatedCounterValue = currentCounterValue + 1;
-      const { error: updateError } = await supabase
-        .from('networth')
-        .update({ counter: updatedCounterValue })
-        .eq('id', data.id);
-
-      if (updateError) {
-        console.error("Update counter error:", updateError);
-      } else {
-        console.log("Networth updated successfully:", userId);
-        updateNetworthValue(updatedCounterValue);
-      }
-       }
+     alert(data.counter)
+         updateNetworthValue(currentCounterValue);
+      
+       
     
     
     }
+  
+  }
   };
 
   const NetworthPage = () => {
