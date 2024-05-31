@@ -9,7 +9,6 @@ import { http } from "viem";
 import { mainnet } from "viem/chains";
 import supabase from './supabase';
 import './App.css';
-import { PrismaClient } from '@prisma/client';
 
 
 
@@ -31,7 +30,6 @@ const Main = ({ isFirstTime }) => {
   const [showHome, setShowHome] = useState(true);
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
-  //const prisma = new PrismaClient();
 
   
 
@@ -88,44 +86,14 @@ const Main = ({ isFirstTime }) => {
   }
   };
   
-    /*
-  const checkUserExists = async (userId) => {
-  try {
-    const user = await prisma.networth.findUnique({
-      where: {
-        user_id: userId,
-      },
-    });
-
-    if (!user) {
-      const newUser = await prisma.networth.create({
-        data: {
-          user_id: userId,
-          counter: 1,
-        },
-      });
-      alert(`User with ID ${userId} recorded in Supabase`);
-    } else {
-      const updatedUser = await prisma.networth.update({
-        where: {
-          user_id: userId,
-        },
-        data: {
-          counter: parseInt(user.counter) + 1,
-        },
-      });
-      alert("Networth updated successfully:", userId);
-    }
-  } catch (error) {
-    console.error("Database error:", error);
-  }
-};
-    
-*/
+ 
   const NetworthPage = () => {
     return (
       <div>
         <h1 style={{ fontSize: "25px" }}><b>Net Worth</b>: {netWorthValue} Net</h1>
+    </br>
+            <h1 style={{ fontSize: "25px" }}><b>My Multiplier</b>: {netWorthValue} Net</h1>
+
         {userWallets[0] && <h1><b>Account ID</b>: {userWallets[0].id}</h1>}
       </div>
     );
@@ -141,8 +109,7 @@ const Main = ({ isFirstTime }) => {
           rank={data.counter}
           address={data.user_id}
           netWorth={data.counter}
-          change24h=""
-          tokens=""
+          
         />
       ))}
     </div>
