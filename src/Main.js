@@ -9,6 +9,11 @@ import { http } from "viem";
 import { mainnet } from "viem/chains";
 import supabase from './supabase';
 import './App.css';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+
 
 const config = createConfig({
   chains: [mainnet],
@@ -61,7 +66,7 @@ const Main = ({ isFirstTime }) => {
   };
 
   
-
+/*
   const checkUserExists = async (userId) => {
     const { data, error } = await supabase
       .from('networth') // Replace with your actual table name
@@ -83,6 +88,39 @@ const Main = ({ isFirstTime }) => {
   
   }
   };
+  */
+  const checkUserExists = async (userId) => {
+  try {
+    const user = await prisma.networth.findUnique({
+      where: {
+        user_id: userId,
+      },
+    });
+
+    if (!user) {
+      const newUser = await prisma.networth.create({
+        data: {
+          user_id: userId,
+          counter: 1,
+        },
+      });
+      alert(`User with ID ${userId} recorded in Supabase`);
+    } else {
+      const updatedUser = await prisma.networth.update({
+        where: {
+          user_id: userId,
+        },
+        data: {
+          counter: parseInt(user.counter) + 1,
+        },
+      });
+      alert("Networth updated successfully:", userId);
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+  }
+};
+    
 
   const NetworthPage = () => {
     return (
@@ -172,4 +210,5 @@ const Main = ({ isFirstTime }) => {
 };
 
 export default Main;
-        
+
+  
