@@ -31,8 +31,7 @@ const Main = ({ isFirstTime }) => {
   const [showHome, setShowHome] = useState(true);
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
-
-const prisma = new PrismaClient();
+  //const prisma = new PrismaClient();
 
   
 
