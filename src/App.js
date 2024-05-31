@@ -24,14 +24,10 @@ const App = () => {
       if (insertError) {
         console.error("Record error:", insertError);
       } else {
-     alert(`User with ID ${userId} recorded in Supabase`);
+        alert(`User with ID ${userId} recorded in Supabase`);
       }
     } else if (data) {
-        
-
       const currentCounterValue = parseInt(data.counter);
-     // alert(data.counter)
-       
       const updatedCounterValue = currentCounterValue + 1;
       const { error: updateError } = await supabase
         .from('networth')
@@ -41,14 +37,11 @@ const App = () => {
       if (updateError) {
         alert("Update counter error:", updateError);
       } else {
-      alert("Networth updated successfully:", userId);
-       // updateNetworthValue(updatedCounterValue);
+        alert("Networth updated successfully:", userId);
       }
-       
-    
-    
     }
-  
+  };
+
   return (
     <DynamicContextProvider
       settings={{
@@ -57,8 +50,7 @@ const App = () => {
         events: {
           onAuthSuccess: async (args) => {
             const userId = args.primaryWallet.address;
-            checkUserExists(userId);
-          //  setIsFirstTime(true);
+            await checkUserExists(userId);
           }
         }
       }}
@@ -68,4 +60,5 @@ const App = () => {
   );
 };
 
- export default App
+export default App;
+      
