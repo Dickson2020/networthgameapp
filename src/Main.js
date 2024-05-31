@@ -37,6 +37,10 @@ const Main = ({ isFirstTime }) => {
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
+
+      
+
+      alert(JSON.stringify(userWallets))
      checkUserExists(userId);
     }
   }, [userWallets]);
