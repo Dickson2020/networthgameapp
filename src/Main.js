@@ -39,7 +39,7 @@ const Main = ({ isFirstTime }) => {
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
-    //  checkUserExists(userId);
+     checkUserExists(userId);
     }
   }, [userWallets]);
 
@@ -65,7 +65,7 @@ const Main = ({ isFirstTime }) => {
   };
 
   
-/*
+
   const checkUserExists = async (userId) => {
     const { data, error } = await supabase
       .from('networth') // Replace with your actual table name
@@ -87,8 +87,7 @@ const Main = ({ isFirstTime }) => {
   
   }
   };
-  */
-
+  
     /*
   const checkUserExists = async (userId) => {
   try {
