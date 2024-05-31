@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import LeaderboardScore from './LeaderboardScore';
 import { DynamicWidget, DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
-import redis from 'redis';
-
-
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
+import { createConfig, WagmiProvider } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { http } from "viem";
+import { mainnet } from "viem/chains";
 import supabase from './supabase';
 import './App.css';
+
+const config = createConfig({
+  chains: [mainnet],
+  multiInjectedProviderDiscovery: false,
+  transports: {
+    [mainnet.id]: http(),
+  },
+});
+
+const queryClient = new QueryClient();
+
 
 const Main = ({ isFirstTime }) => {
   const userWallets = useUserWallets();
@@ -15,14 +29,7 @@ const Main = ({ isFirstTime }) => {
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
 
-const client = redis.createClient({
-  host: 'localhost',
-  port: 6379,
-});
 
-client.on('connect', () => {
-  console.log('Connected to Redis');
-});
 
   useEffect(() => {
     if (userWallets.length > 0) {
@@ -38,12 +45,7 @@ client.on('connect', () => {
     fetchLeaderboardData();
   }, []);
 
-  useEffect(() => {
-    client.HGETALL('leaderboard', (err, data) => {
-            setLeaderboardData(data);
-
-    });
-  }, []);
+  
 
   const fetchLeaderboardData = async () => {
     const { data, error } = await supabase
@@ -53,16 +55,7 @@ client.on('connect', () => {
 
     if (error) {
       console.error(error);
-    } else {
-
-      client.SET('key', 'value', (err, reply) => {
-  console.log(reply);
-});
-
-client.HMSET('leaderboard', data, (err, reply) => {
-  console.log(reply);
-});
-      
+    } else{
       setLeaderboardData(data);
     }
   };
@@ -178,7 +171,14 @@ client.HMSET('leaderboard', data, (err, reply) => {
 
         {showLeaderboard === false && showHome && isConnected ? (
           <div>
-            <DynamicEmbeddedWidget />
+          <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          <DynamicWagmiConnector>
+           <DynamicEmbeddedWidget />
+          </DynamicWagmiConnector>
+        </QueryClientProvider>
+      </WagmiProvider>
+            
           </div>
         ) : (
           <div>
