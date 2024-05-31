@@ -81,7 +81,7 @@ const Main = ({ isFirstTime }) => {
         console.log(`User with ID ${userId} recorded in Supabase`);
       }
     } else if (data) {
-        if (isFirstTime) {
+        
 
       const currentCounterValue = parseInt(data.counter);
      // alert(data.counter)
@@ -99,7 +99,7 @@ const Main = ({ isFirstTime }) => {
         updateNetworthValue(updatedCounterValue);
       }
        }
-    }
+    
     
     }
   };
