@@ -11,8 +11,6 @@ import supabase from './supabase';
 import './App.css';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
 
 
 const config = createConfig({
@@ -34,7 +32,9 @@ const Main = ({ isFirstTime }) => {
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
 
+const prisma = new PrismaClient();
 
+  
 
   useEffect(() => {
     if (userWallets.length > 0) {
