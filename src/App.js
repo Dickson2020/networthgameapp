@@ -48,7 +48,7 @@ const App = () => {
     
     
     }
-  }
+  
   return (
     <DynamicContextProvider
       settings={{
