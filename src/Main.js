@@ -10,8 +10,6 @@ import { mainnet } from "viem/chains";
 import supabase from './supabase';
 import './App.css';
 
-
-
 const config = createConfig({
   chains: [mainnet],
   multiInjectedProviderDiscovery: false,
@@ -22,7 +20,6 @@ const config = createConfig({
 
 const queryClient = new QueryClient();
 
-
 const Main = ({ isFirstTime }) => {
   const userWallets = useUserWallets();
   const [showNetworth, setShowNetworth] = useState(false);
@@ -31,27 +28,20 @@ const Main = ({ isFirstTime }) => {
   const [netWorthValue, updateNetworthValue] = useState(0);
   const [userIdValue, updateUserIdValue] = useState("");
 
-  
-
   useEffect(() => {
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
-
-      
-
       alert(JSON.stringify(userWallets))
-     checkUserExists(userId);
+      checkUserExists(userId);
     }
   }, [userWallets]);
 
-    const [leaderboardData, setLeaderboardData] = useState([]);
+  const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
     fetchLeaderboardData();
   }, []);
-
-  
 
   const fetchLeaderboardData = async () => {
     const { data, error } = await supabase
@@ -66,8 +56,6 @@ const Main = ({ isFirstTime }) => {
     }
   };
 
-  
-
   const checkUserExists = async (userId) => {
     const { data, error } = await supabase
       .from('networth') // Replace with your actual table name
@@ -75,49 +63,37 @@ const Main = ({ isFirstTime }) => {
       .eq('user_id', userId)
       .single();
 
-     if (data) {
-        
-
+    if (data) {
       const currentCounterValue = parseInt(data.counter);
-     alert(data.counter)
-         updateNetworthValue(currentCounterValue);
-      
-       
-    
-    
+      alert(data.counter)
+      updateNetworthValue(currentCounterValue);
     }
-  
-  }
   };
-  
- 
+
   const NetworthPage = () => {
     return (
       <div>
         <h1 style={{ fontSize: "25px" }}><b>Net Worth</b>: {netWorthValue} Net</h1>
-            <h1 style={{ fontSize: "25px" }}><b>My Multiplier</b>: {netWorthValue} Net</h1>
-
+        <h1 style={{ fontSize: "25px" }}><b>My Multiplier</b>: {netWorthValue} Net</h1>
         {userWallets[0] && <h1><b>Account ID</b>: {userWallets[0].id}</h1>}
       </div>
     );
   };
 
   const Leaderboard = () => {
-
-  return (
-    <div className="leaderboard">
-      {leaderboardData.map((data, index) => (
-        <LeaderboardScore
-          key={index}
-          rank={data.counter}
-          address={data.user_id}
-          netWorth={data.counter}
-          
-        />
-      ))}
-    </div>
-  );
-};
+    return (
+      <div className="leaderboard">
+        {leaderboardData.map((data, index) => (
+          <LeaderboardScore
+            key={index}
+            rank={data.counter}
+            address={data.user_id}
+            netWorth={data.counter}
+          />
+        ))}
+      </div>
+    );
+  };
 
   const handleViewNetworth = () => {
     setShowNetworth(true);
@@ -144,9 +120,9 @@ const Main = ({ isFirstTime }) => {
       <div className="flex flex-col items-center justify-center text-center">
         {isConnected ? (
           <div className="flex justify-center mb-4">
-  {userWallets.map((wallet) => (
-        <p key={wallet.address}>{JSON.stringify(wallet.tokenBalances)}</p>
-      ))}
+            {userWallets.map((wallet) => (
+              <p key={wallet.address}>{JSON.stringify(wallet.tokenBalances)}</p>
+            ))}
             <div className="flex gap-4">
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
@@ -159,14 +135,13 @@ const Main = ({ isFirstTime }) => {
 
         {showLeaderboard === false && showHome && isConnected ? (
           <div>
-          <WagmiProvider config={config}>
-        <QueryClientProvider client={queryClient}>
-          <DynamicWagmiConnector>
-           <DynamicEmbeddedWidget />
-          </DynamicWagmiConnector>
-        </QueryClientProvider>
-      </WagmiProvider>
-            
+            <WagmiProvider config={config}>
+              <QueryClientProvider client={queryClient}>
+                <DynamicWagmiConnector>
+                  <DynamicEmbeddedWidget />
+                </DynamicWagmiConnector>
+              </QueryClientProvider>
+            </WagmiProvider>
           </div>
         ) : (
           <div>
@@ -180,5 +155,3 @@ const Main = ({ isFirstTime }) => {
 };
 
 export default Main;
-
-  
