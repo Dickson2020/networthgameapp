@@ -44,31 +44,28 @@ const Main = ({ isFirstTime }) => {
   }, []);
 
   const fetchLeaderboardData = async () => {
-    const { data, error } = await supabase
-      .from('networth')
-      .select()
-      .order('counter', { ascending: false });
+  const response = await fetch(`https://backend-rose-xi.vercel.app/getusers`);
+  const userData = await response.json();
 
-    if (error) {
-      console.error(error);
-    } else{
-      setLeaderboardData(data);
-    }
-  };
-
+  if (userData) {
+    const sortedData = userData.sort((a, b) => b.counter - a.counter);
+    setLeaderboardData(sortedData);
+  } else {
+    console.error("Error fetching data");
+  }
+};
   const checkUserExists = async (userId) => {
-    const { data, error } = await supabase
-      .from('networth') // Replace with your actual table name
-      .select()
-      .eq('user_id', userId)
-      .single();
+  const response = await fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`);
+  const userData = await response.json();
 
-    if (data) {
-      const currentCounterValue = parseInt(data.counter);
-      alert(data.counter)
-      updateNetworthValue(currentCounterValue);
-    }
-  };
+  if (userData) {
+    const currentCounterValue = parseInt(userData.counter);
+    alert("fetched user: "+ userData.counter)
+    updateNetworthValue(currentCounterValue);
+  } else {
+    alert("User not found");
+  }
+};
 
   const NetworthPage = () => {
     return (
