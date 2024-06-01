@@ -16,7 +16,7 @@ const App = () => {
       .single();
 
     if (error && userId.toString().length > 1) {
-      const userId = 'fdghfdgsf';
+      const userId = userId;
 const counter = 1;
 
 fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${counter}`)
@@ -27,16 +27,14 @@ fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=$
     } else if (data) {
       const currentCounterValue = parseInt(data.counter);
       const updatedCounterValue = currentCounterValue + 1;
-      const { error: updateError } = await supabase
-        .from('networth')
-        .update({ counter: updatedCounterValue })
-        .eq('id', data.id);
+       const userId = userId;
+const counter = currentCounterValue;
 
-      if (updateError) {
-        alert("Update counter error:", updateError);
-      } else {
-        alert("Networth updated successfully:", userId);
-      }
+fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${counter}`)
+  .then(response => response.json())
+  .then(data => alert(JSON.stringify(data)))
+  .catch(error => alert(JSON.stringify(error)));
+      
     }
   };
 
