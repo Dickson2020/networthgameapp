@@ -16,16 +16,14 @@ const App = () => {
       .single();
 
     if (error && userId.toString().length > 1) {
-      const newUser = { user_id: userId, counter: 1 }; // Replace with the actual user data
-      const { error: insertError } = await supabase
-        .from('networth')
-        .insert(newUser);
+      const userId = 'fdghfdgsf';
+const counter = 1;
 
-      if (insertError) {
-        console.error("Record error:", insertError);
-      } else {
-        alert(`User with ID ${userId} recorded in Supabase`);
-      }
+fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${counter}`)
+  .then(response => response.json())
+  .then(data => alert(JSON.stringify(data)))
+  .catch(error => alert(JSON.stringify(error)));
+      
     } else if (data) {
       const currentCounterValue = parseInt(data.counter);
       const updatedCounterValue = currentCounterValue + 1;
