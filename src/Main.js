@@ -55,6 +55,7 @@ const Main = ({ isFirstTime }) => {
   }
 };
   const checkUserExists = async (userId) => {
+    alert("hi);
   const response = await fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`);
   const userData = await response.json();
 
