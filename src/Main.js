@@ -33,7 +33,7 @@ const Main = ({ isFirstTime }) => {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
       alert(JSON.stringify(userWallets))
-      checkUserExists(userId);
+  //    checkUserExists(userId);
     }
   }, [userWallets]);
 
@@ -55,7 +55,7 @@ const Main = ({ isFirstTime }) => {
   }
 };
   const checkUserExists = async (userId) => {
-    alert("hi);
+    alert("hi");
   const response = await fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`);
   const userData = await response.json();
 
