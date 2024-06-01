@@ -127,7 +127,7 @@ const Main = ({ isFirstTime }) => {
             </div>
           </div>
         ) : (
-         null
+         Networth Game
         )}
         {showLeaderboard === false && showHome && isConnected && <NetworthPage />}
 
