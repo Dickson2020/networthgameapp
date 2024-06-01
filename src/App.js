@@ -8,36 +8,33 @@ import Main from "./Main";
 const App = () => {
   const [isFirstTime, setIsFirstTime] = useState(false);
 
-  const checkUserExists = async (userId) => {
-    const { data, error } = await supabase
-      .from('networth') // Replace with your actual table name
-      .select()
-      .eq('user_id', userId)
-      .single();
+const checkUserExists = async (userId) => {
+  //Prism ORM Supabase endpoint
+  const response = await fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`);
+  const userData = await response.json();
 
-    if (error && userId.toString().length > 1) {
-      const userId = userId;
-const counter = 1;
+  if (userData) {
+    // User exists, update counter
+    const currentCounterValue = parseInt(userData.counter);
+    const updatedCounterValue = currentCounterValue + 1;
 
-fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${counter}`)
-  .then(response => response.json())
-  .then(data => alert(JSON.stringify(data)))
-  .catch(error => alert(JSON.stringify(error)));
-      
-    } else if (data) {
-      const currentCounterValue = parseInt(data.counter);
-      const updatedCounterValue = currentCounterValue + 1;
-       const userId = userId;
-const counter = currentCounterValue;
+    fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${updatedCounterValue}`)
+      .then(response => response.json())
+      .then(data => alert(JSON.stringify(data)))
+      .catch(error => alert(JSON.stringify(error)));
+    
+  } else {
+    
+    // User doesn't exist, create new user
+    const counter = 1;
 
-fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${counter}`)
-  .then(response => response.json())
-  .then(data => alert(JSON.stringify(data)))
-  .catch(error => alert(JSON.stringify(error)));
-      
-    }
-  };
-
+    fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${counter}`)
+      .then(response => response.json())
+      .then(data => alert(JSON.stringify(data)))
+      .catch(error => alert(JSON.stringify(error)));
+  }
+};
+  
   return (
     <DynamicContextProvider
       settings={{
