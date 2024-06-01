@@ -33,40 +33,34 @@ const Main = ({ isFirstTime }) => {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
       alert(JSON.stringify(userWallets))
-  //    checkUserExists(userId);
+   checkUserExists(userId);
     }
   }, [userWallets]);
 
   const [leaderboardData, setLeaderboardData] = useState([]);
 
   useEffect(() => {
-    fetchLeaderboardData();
+    fetch('https://backend-rose-xi.vercel.app/getusers')
+      .then(response => response.json())
+      .then(data => setLeaderboardData(data));
   }, []);
 
-  const fetchLeaderboardData = async () => {
-  const response = await fetch(`https://backend-rose-xi.vercel.app/getusers`);
-  const userData = await response.json();
-
-  if (userData) {
-    const sortedData = userData.sort((a, b) => b.counter - a.counter);
-    setLeaderboardData(sortedData);
-  } else {
-    console.error("Error fetching data");
-  }
+ 
+ const checkUserExists = (userId) => {
+  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter);
+        alert("fetched user: " + userData.counter);
+        updateNetworthValue(currentCounterValue);
+      } else {
+        alert("User not found");
+      }
+    })
+    .catch(error => console.error('Error fetching user:', error));
 };
-  const checkUserExists = async (userId) => {
-    alert("hi");
-  const response = await fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`);
-  const userData = await response.json();
-
-  if (userData) {
-    const currentCounterValue = parseInt(userData.counter);
-    alert("fetched user: "+ userData.counter)
-    updateNetworthValue(currentCounterValue);
-  } else {
-    alert("User not found");
-  }
-};
+  
 
   const NetworthPage = () => {
     return (
