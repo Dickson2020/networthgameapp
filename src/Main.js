@@ -113,8 +113,8 @@ const Main = ({ isFirstTime }) => {
         {isConnected &&  <div className="flex justify-center mb-4">
             
             <div className="flex gap-4">
-              <button className="bg-white-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
-              <button className="bg-white-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
+              <button className="bg-black-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
+              <button className="bg-black-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
             </div>
           </div>
         }
