@@ -34,11 +34,15 @@ walletConnectors: [EthereumWalletConnectors],
 <WagmiProvider config={config}>
 <QueryClientProvider client={queryClient}>
 <DynamicWagmiConnector>
-<DynamicEmbeddedWidget >
+ <div>
+   <MyComponent />
 
-  <MyComponent />
+<DynamicEmbeddedWidget />
 
-  </DynamicEmbeddedWidget >
+
+ </div>
+
+
 
 </DynamicWagmiConnector>
 </QueryClientProvider>
@@ -49,7 +53,31 @@ walletConnectors: [EthereumWalletConnectors],
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
+  const userWallets = useUserWallets();
+     alert(isLoggedIn)
 
+   useEffect(() => {
+    if (userWallets.length > 0) {
+      const userId = userWallets[0].id;
+     alert(JSON.stringify(userWallets))
+    }
+  }, [userWallets]);
+ 
+ const checkUserExists = (userId) => {
+  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter);
+        alert("fetched user: " + userData.counter);
+      } else {
+        alert("User not found");
+      }
+    })
+    .catch(error => alert('Error fetching user:', error));
+};
+
+ 
   return (
     <div>
       {isLoggedIn ? (
