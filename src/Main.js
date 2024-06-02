@@ -7,7 +7,6 @@ import { createConfig, WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { http } from "viem";
 import { mainnet } from "viem/chains";
-import supabase from './supabase';
 import './App.css';
 
 const config = createConfig({
