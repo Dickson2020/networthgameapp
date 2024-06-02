@@ -20,7 +20,7 @@ const config = createConfig({
 const queryClient = new QueryClient();
 
 export default function App() {
-const userWallets = useUserWallets();
+//const userWallets = useUserWallets();
 
 const [userIdValue, updateUserIdValue] = useState("");
 /*
