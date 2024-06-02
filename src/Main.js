@@ -102,18 +102,8 @@ const Main = () => {
   return (
     <div className="body">
       <div className="flex flex-col items-center justify-center text-center">
-        {isConnected &&  <div className="flex justify-center mb-4">
-            
-            <div className="flex gap-4">
-              <button className="bg-black-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
-              <button className="bg-black-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
-            </div>
-          </div>
-        }
-        {showLeaderboard === false && showHome && isConnected && <NetworthPage />}
-
-        {showLeaderboard === false && showHome && isConnected ? (
-          <div>
+  
+         <div>
             <WagmiProvider config={config}>
               <QueryClientProvider client={queryClient}>
                 <DynamicWagmiConnector>
@@ -122,13 +112,7 @@ const Main = () => {
               </QueryClientProvider>
             </WagmiProvider>
           </div>
-        ) : (
-          <div>
-            {isConnected === false && <DynamicEmbeddedWidget />}
-          </div>
-        )}
-        {showLeaderboard && <Leaderboard />}
-      </div>
+        </div>
     </div>
   );
 };
