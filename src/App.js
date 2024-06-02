@@ -8,7 +8,7 @@ import { http } from "viem";
 import { mainnet } from "viem/chains";
 import { DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
-
+import './App.css';
 
 const config = createConfig({
   chains: [mainnet],
