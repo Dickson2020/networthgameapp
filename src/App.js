@@ -47,8 +47,19 @@ export default function App() {
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
-      const { user } = useDynamicContext();
-alert(JSON.stringify(user))
+ const { user } = useDynamicContext();
+
+    const [userIdValue, updateUserIdValue] = useState("");
+
+  
+useEffect(() => {
+    if (user != null) {
+      const userId = user.userId;
+      updateUserIdValue(userId);
+      checkUserExists(userId);
+    }
+  }, [user]); 
+  
   const checkUserExists = (userId) => {
     fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
       .then(response => response.json())
