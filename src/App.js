@@ -32,8 +32,9 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <DynamicWagmiConnector>
             <div>
+                <MyComponent />
+
               <DynamicEmbeddedWidget />
-              <MyComponentWrapper />
             </div>
           </DynamicWagmiConnector>
         </QueryClientProvider>
@@ -42,13 +43,7 @@ export default function App() {
   );
 }
 
-const MyComponentWrapper = () => {
-  return (
-    <DynamicContextProvider>
-      <MyComponent />
-    </DynamicContextProvider>
-  );
-};
+
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
