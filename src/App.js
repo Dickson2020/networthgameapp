@@ -61,27 +61,36 @@ const [userIdValue, updateUserIdValue] = useState("");
 alert(JSON.stringify(primaryWallet))
   
   const Leaderboard = () => {
+
+      const [showLeaderboard, setShowLeaderboard] = useState(false);
+
   return (
     <div className="leaderboard">
-      <table className="table table-striped table-hover">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Address</th>
-            <th scope="col">Multiplier</th>
-          </tr>
-        </thead>
-        <tbody>
-          {leaderboardData.map((item, index) => (
-            <tr key={index}>
-              <th scope="row">{item.rank}</th>
-              <td>{item.user_id}</td>
-              <td>{item.counter}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  <button onClick={() => setShowLeaderboard(!showLeaderboard)}>
+    {showLeaderboard ? 'Hide Leaderboard' : 'View Leaderboard'}
+  </button>
+  {showLeaderboard && (
+    <table className="table table-striped table-hover">
+<table className="table table-striped table-hover">
+<thead className="thead-dark">
+<tr>
+<th scope="col">#</th>
+<th scope="col">Address</th>
+<th scope="col">Multiplier</th>
+</tr>
+</thead>
+<tbody>
+{leaderboardData.map((item, index) => (
+<tr key={index}>
+<th scope="row">{item.rank}</th>
+<td>{item.user_id}</td>
+<td>{item.counter}</td>
+</tr>
+))}
+</tbody>
+</table>    </table>
+  )}
+</div>
   );
 };
 
@@ -132,15 +141,17 @@ updateNetworthValue(currentCounterValue)
    <div>
   {isLoggedIn ? (
     <div>
-      <h2>Wallet Balances</h2>
-      <p>
-        <span>Multiplier:</span>
-        <span>{netWorthValue} MUL</span>
-      </p>
-      <p>
-        <span>Networth:</span>
-        <span>{netWorthValue} NET</span>
-      </p>
+     <div className="wallet-balances">
+  <h2>Wallet Balances</h2>
+  <p>
+    <span>Multiplier:</span>
+    <span>{netWorthValue} MUL</span>
+  </p>
+  <p>
+    <span>Networth:</span>
+    <span>{netWorthValue} NET</span>
+  </p>
+</div>
 
 <Leaderboard/>
     </div>
