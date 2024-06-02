@@ -110,8 +110,7 @@ const Main = ({ isFirstTime }) => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center text-center">
-        {isConnected ? (
-          <div className="flex justify-center mb-4">
+        {isConnected &&  <div className="flex justify-center mb-4">
             {userWallets.map((wallet) => (
               <p key={wallet.address}>{JSON.stringify(wallet.tokenBalances)}</p>
             ))}
@@ -120,9 +119,7 @@ const Main = ({ isFirstTime }) => {
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
             </div>
           </div>
-        ) : (
-         <p>Networth Game</p>
-        )}
+        }
         {showLeaderboard === false && showHome && isConnected && <NetworthPage />}
 
         {showLeaderboard === false && showHome && isConnected ? (
