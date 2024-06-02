@@ -1,7 +1,6 @@
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import React, { useState, useEffect } from 'react';
-import supabase from './supabase';
 
 import Main from "./Main";
 
