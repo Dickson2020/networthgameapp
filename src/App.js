@@ -26,6 +26,12 @@ export default function App() {
       settings={{
         environmentId: "c879278a-d3e2-4295-a59e-3ecf5a9695d3",
         walletConnectors: [EthereumWalletConnectors],
+         events: {
+      
+        onAuthSuccess: () => {
+
+        }
+      }
       }}
     >
       <WagmiProvider config={config}>
@@ -82,12 +88,22 @@ useEffect(() => {
   };
 
   return (
+   <div>
+  {isLoggedIn ? (
     <div>
-      {isLoggedIn ? (
-        <p>You are logged!</p>
-      ) : (
-        <p>Please login.</p>
-      )}
+      <h2>Wallet Balances</h2>
+      <p>
+        <span>Multiplier:</span>
+        <span>{walletMultiplierBalance} MUL</span>
+      </p>
+      <p>
+        <span>Networth:</span>
+        <span>{walletNetworthBalance} NET</span>
+      </p>
     </div>
+  ) : (
+    <></> // Don't display anything if not logged in
+  )}
+</div>
   );
 };
