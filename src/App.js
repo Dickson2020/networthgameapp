@@ -56,7 +56,7 @@ const MyComponent = () => {
 
    const userWallets = useUserWallets();
 
-     alert(JSON.dtringify(userWallets))
+     alert(JSON.stringify(userWallets))
 
    
  const checkUserExists = (userId) => {
