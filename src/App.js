@@ -53,12 +53,12 @@ walletConnectors: [EthereumWalletConnectors],
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
-     alert(isLoggedIn)
 
-   useEffect(() => {
- 
-  }, []);
- 
+   const userWallets = useUserWallets();
+
+     alert(JSON.dtringify(userWallets))
+
+   
  const checkUserExists = (userId) => {
   fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
     .then(response => response.json())
