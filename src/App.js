@@ -163,40 +163,32 @@ useEffect(() => {
     }
   }, [user]); 
   
-  const checkUserExists = (userId) => {
-    fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
-  .then(response => response.json())
-  .then(userData => {
-    if (userData) {
-      const currentCounterValue = parseInt(userData.counter);
-updateNetworthValue(currentCounterValue)
-    
-    } else {
-      const newUserId = userId; // Replace with the actual new user ID
-      const counter = 1;
-      fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
-        .then(response => response.json())
-        .then(createdUserData => {
-          console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
-        })
-        .catch(error => {
-          
-          console.log('Error creating user:', error)
-      checkUserExists(userId);
-
-        }
-              
-        });
-    }
-  })
-  .catch(error => {
-          
-          console.log('Error creating user:', error)
-      checkUserExists(userId);
-
-        });
-  };
-
+ const checkUserExists = (userId) => {
+  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter);
+        updateNetworthValue(currentCounterValue);
+      } else {
+        const newUserId = userId; // Replace with the actual new user ID
+        const counter = 1;
+        fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
+          .then(response => response.json())
+          .then(createdUserData => {
+            console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
+          })
+          .catch(error => {
+            console.log('Error creating user:', error);
+            checkUserExists(userId); // Recursive call to retry
+          });
+      }
+    })
+    .catch(error => {
+      console.log('Error fetching user:', error);
+      checkUserExists(userId); // Recursive call to retry
+    });
+};
   return (
    <div>
   {isLoggedIn ? (
