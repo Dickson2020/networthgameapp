@@ -38,13 +38,13 @@ const Main = () => {
 
   const [leaderboardData, setLeaderboardData] = useState([]);
 
-  useEffect(() => {
+/*  useEffect(() => {
     fetch('https://backend-rose-xi.vercel.app/getusers')
       .then(response => response.json())
       .then(data => setLeaderboardData(data));
   }, []);
 
- 
+ */
  const checkUserExists = (userId) => {
   fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
     .then(response => response.json())
@@ -74,14 +74,7 @@ const Main = () => {
   const Leaderboard = () => {
     return (
       <div className="leaderboard">
-        {leaderboardData.map((data, index) => (
-          <LeaderboardScore
-            key={index}
-            rank={data.counter}
-            address={data.user_id}
-            netWorth={data.counter}
-          />
-        ))}
+        
       </div>
     );
   };
