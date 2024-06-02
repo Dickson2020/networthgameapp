@@ -58,7 +58,7 @@ const Main = ({ isFirstTime }) => {
         alert("User not found");
       }
     })
-    .catch(error => console.error('Error fetching user:', error));
+    .catch(error => alert('Error fetching user:', error));
 };
   
 
@@ -108,15 +108,13 @@ const Main = ({ isFirstTime }) => {
   const isConnected = userWallets.some((wallet) => wallet.connected);
 
   return (
-    <div>
+    <div className="body">
       <div className="flex flex-col items-center justify-center text-center">
         {isConnected &&  <div className="flex justify-center mb-4">
-            {userWallets.map((wallet) => (
-              <p key={wallet.address}>{JSON.stringify(wallet.tokenBalances)}</p>
-            ))}
+            
             <div className="flex gap-4">
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
+              <button className="bg-white-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded" onClick={handleViewHome}>My Wallet</button>
+              <button className="bg-white-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded" onClick={handleViewLeaderboard}>Leaderboard</button>
             </div>
           </div>
         }
