@@ -54,9 +54,47 @@ export default function App() {
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
  const { user } = useDynamicContext();
+const [userIdValue, updateUserIdValue] = useState("");
+  const [leaderboardData, setLeaderboardData] = useState([]);
+  const [netWorthValue, updateNetworthValue] = useState(1);
 
-    const [userIdValue, updateUserIdValue] = useState("");
+  const Leaderboard = () => {
+  return (
+    <div className="leaderboard">
+      <table className="table table-striped table-hover">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Address</th>
+            <th scope="col">Multiplier</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboardData.map((item, index) => (
+            <tr key={index}>
+              <th scope="row">{item.rank}</th>
+              <td>{item.user_id}</td>
+              <td>{item.counter}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
+useEffect(() => {
+  fetch('https://backend-rose-xi.vercel.app/getusers')
+    .then(response => response.json())
+    .then(data => {
+      const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
+        ...item,
+        rank: index + 1,
+      }));
+      setLeaderboardData(sortedData);
+    });
+}, []);
+  
   
 useEffect(() => {
     if (user != null) {
@@ -72,7 +110,8 @@ useEffect(() => {
   .then(userData => {
     if (userData) {
       const currentCounterValue = parseInt(userData.counter);
-      alert("fetched user: " + userData.counter);
+updateNetworthValue(currentCounterValue)
+    
     } else {
       const newUserId = userId; // Replace with the actual new user ID
       const counter = 1;
@@ -94,12 +133,14 @@ useEffect(() => {
       <h2>Wallet Balances</h2>
       <p>
         <span>Multiplier:</span>
-        <span>{walletMultiplierBalance} MUL</span>
+        <span>{netWorthValue} MUL</span>
       </p>
       <p>
         <span>Networth:</span>
         <span>{walletNetworthBalance} NET</span>
       </p>
+
+<Leaderboard/>
     </div>
   ) : (
     <></> // Don't display anything if not logged in
