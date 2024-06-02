@@ -62,16 +62,23 @@ useEffect(() => {
   
   const checkUserExists = (userId) => {
     fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
-      .then(response => response.json())
-      .then(userData => {
-        if (userData) {
-          const currentCounterValue = parseInt(userData.counter);
-          alert("fetched user: " + userData.counter);
-        } else {
-          alert("User not found");
-        }
-      })
-      .catch(error => alert('Error fetching user:', error));
+  .then(response => response.json())
+  .then(userData => {
+    if (userData) {
+      const currentCounterValue = parseInt(userData.counter);
+      alert("fetched user: " + userData.counter);
+    } else {
+      const newUserId = userId; // Replace with the actual new user ID
+      const counter = 1;
+      fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
+        .then(response => response.json())
+        .then(createdUserData => {
+          alert(`Created new user with ID ${newUserId} and counter ${counter}`);
+        })
+        .catch(error => alert('Error creating user:', error));
+    }
+  })
+  .catch(error => alert('Error fetching user:', error));
   };
 
   return (
