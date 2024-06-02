@@ -53,11 +53,13 @@ export default function App() {
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
- const { user } = useDynamicContext();
+ const { user, primaryWallet } = useDynamicContext();
 const [userIdValue, updateUserIdValue] = useState("");
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [netWorthValue, updateNetworthValue] = useState(1);
-
+  
+alert(JSON.stringify(primaryWallet))
+  
   const Leaderboard = () => {
   return (
     <div className="leaderboard">
