@@ -43,7 +43,7 @@ const App = () => {
         } // <--- Removed extra closing brace
       }}
     >
-      <Main isFirstTime={isFirstTime} />
+      <Main />
     </DynamicContextProvider>
   );
 };
