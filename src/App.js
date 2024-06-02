@@ -137,7 +137,7 @@ updateNetworthValue(currentCounterValue)
       </p>
       <p>
         <span>Networth:</span>
-        <span>{walletNetworthBalance} NET</span>
+        <span>{netWorthValue} NET</span>
       </p>
 
 <Leaderboard/>
