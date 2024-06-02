@@ -19,7 +19,7 @@ const config = createConfig({
 
 const queryClient = new QueryClient();
 
-const Main = ({ isFirstTime }) => {
+const Main = () => {
   const userWallets = useUserWallets();
   const [showNetworth, setShowNetworth] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -31,8 +31,8 @@ const Main = ({ isFirstTime }) => {
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
-      alert(JSON.stringify(userWallets))
-   checkUserExists(userId);
+     alert(JSON.stringify(userWallets))
+  // checkUserExists(userId);
     }
   }, [userWallets]);
 
