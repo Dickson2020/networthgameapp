@@ -40,7 +40,7 @@ export default function App() {
  fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${currentCounterValue}`)
         .then(response => response.json())
         .then(createdUserData => {
-          console.log(` user updated with ID ${newUserId} and counter ${counter}`);
+          console.log(` user updated with ID`);
         })
         .catch(error => console.log('Error creating user:', error));
       
@@ -50,7 +50,7 @@ export default function App() {
       fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
         .then(response => response.json())
         .then(createdUserData => {
-          console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
+          console.log(`Created new user with ID`);
         })
         .catch(error => console.log('Error creating user:', error));
     }
