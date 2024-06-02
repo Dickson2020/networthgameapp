@@ -6,7 +6,7 @@ import { createConfig, WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { http } from "viem";
 import { mainnet } from "viem/chains";
-import { DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
+import { DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
 
 
@@ -47,7 +47,9 @@ export default function App() {
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
-    
+      const { primaryWallet } = useDynamicContext();
+  const address = primaryWallet.address;
+alert(address)
   const checkUserExists = (userId) => {
     fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
       .then(response => response.json())
