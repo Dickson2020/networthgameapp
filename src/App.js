@@ -53,7 +53,6 @@ walletConnectors: [EthereumWalletConnectors],
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
-  const userWallets = useUserWallets();
      alert(isLoggedIn)
 
    useEffect(() => {
