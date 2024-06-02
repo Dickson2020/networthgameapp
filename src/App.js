@@ -56,11 +56,8 @@ const MyComponent = () => {
      alert(isLoggedIn)
 
    useEffect(() => {
-    if (userWallets.length > 0) {
-      const userId = userWallets[0].id;
-     alert(JSON.stringify(userWallets))
-    }
-  }, [userWallets]);
+ 
+  }, []);
  
  const checkUserExists = (userId) => {
   fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
