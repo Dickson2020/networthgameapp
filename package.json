@@ -3,21 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-  "@dynamic-labs/ethereum": "2.0.7",
-  "@dynamic-labs/sdk-react-core": "2.0.7",
-  "@dynamic-labs/wagmi-connector": "2.0.7",
-  "@tanstack/react-query": "^5.27.5",
-  "react": "^18.2.0",
-  "react-dom": "18.2.0",
-  "react-scripts": "^5.0.1",
-  "viem": "^2.8.4",
-  "wagmi": "^2.5.7",
-  "@supabase/supabase-js": "*",
-  "@prisma/client": "^4.0.0",
-    "rpc-websockets": "7.11.0"
+    "@dynamic-labs/ethereum": "*",
+    "@dynamic-labs/sdk-react-core": "*",
+    "@dynamic-labs/wagmi-connector": "*",
+    "@tanstack/react-query": "^5.27.5",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "^5.0.1",
+    "viem": "^2.8.4",
+    "wagmi": "^2.5.7"
   },
   "overrides": {
-    "typescript": "^5.0.4"
+    "typescript": "4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,7 +41,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.3",
-    "prisma": "^4.0.0"
+    "tailwindcss": "^3.4.3"
   }
-      }
+}
