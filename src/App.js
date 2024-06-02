@@ -23,17 +23,19 @@ export default function App() {
 const userWallets = useUserWallets();
 
 const [userIdValue, updateUserIdValue] = useState("");
-
+/*
    useEffect(() => {
      try{
     if (userWallets.length > 0) {
       const userId = userWallets[0].id;
       updateUserIdValue(userId);
      alert(JSON.stringify(userId))
+      checkUserExists(userId) 
     }
      }catch(err){ alert(JSON.stringify("error: "+err))}
   }, [userWallets]);
 
+  */
 
 const checkUserExists = (userId) => {
   fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
