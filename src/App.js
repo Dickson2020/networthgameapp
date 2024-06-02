@@ -8,7 +8,6 @@ import { http } from "viem";
 import { mainnet } from "viem/chains";
 import { DynamicEmbeddedWidget, useUserWallets } from "@dynamic-labs/sdk-react-core";
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
-import { useAccount } from '@dynamic-labs/sdk-react-core';
 
 
 const config = createConfig({
@@ -48,10 +47,7 @@ export default function App() {
 
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
-    const account = useAccount();
-
-  const walletAddress = account?.address;
-alert(walletAddress)
+    
   const checkUserExists = (userId) => {
     fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
       .then(response => response.json())
