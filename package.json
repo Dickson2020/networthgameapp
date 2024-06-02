@@ -14,8 +14,8 @@
   "wagmi": "^2.5.7",
   "@supabase/supabase-js": "*",
   "@prisma/client": "^4.0.0",
-   "rpc-websockets": "^7.11.1"
-},
+"@solana/rpc-websockets": "*"
+  },
   "overrides": {
     "typescript": "^5.0.4"
   },
