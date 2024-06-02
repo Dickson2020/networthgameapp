@@ -15,7 +15,7 @@ const App = () => {
         events: {
           onAuthSuccess: (args) => {
             const userId = args.primaryWallet.address;
-
+/*
             fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
               .then(response => response.json())
               .then(userData => {
@@ -38,7 +38,7 @@ const App = () => {
                 }
               })
               .catch(error => alert(JSON.stringify(error)));
-          }
+       */   }
         } // <--- Removed extra closing brace
       }}
     >
