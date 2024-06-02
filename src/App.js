@@ -28,8 +28,36 @@ export default function App() {
         walletConnectors: [EthereumWalletConnectors],
          events: {
       
-        onAuthSuccess: () => {
+        onAuthSuccess: (args) => {
+          const userId = args.primaryWallet.address
 
+            fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+  .then(response => response.json())
+  .then(userData => {
+    if (userData) {
+      const currentCounterValue = parseInt(userData.counter);
+
+ fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${currentCounterValue}`)
+        .then(response => response.json())
+        .then(createdUserData => {
+          console.log(` user updated with ID ${newUserId} and counter ${counter}`);
+        })
+        .catch(error => console.log('Error creating user:', error));
+      
+    } else {
+      const newUserId = userId; // Replace with the actual new user ID
+      const counter = 1;
+      fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
+        .then(response => response.json())
+        .then(createdUserData => {
+          console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
+        })
+        .catch(error => console.log('Error creating user:', error));
+    }
+  })
+  .catch(error => console.log('Error fetching user:', error));
+
+          
         }
       }
       }}
@@ -64,15 +92,24 @@ const [userIdValue, updateUserIdValue] = useState("");
 
   return (
     <div className="leaderboard">
-  <button onClick={() => setShowLeaderboard(!showLeaderboard)}>
-    {showLeaderboard ? 'Hide Leaderboard' : 'View Leaderboard'}
-  </button>
+  <button
+          style={{
+            backgroundColor: '#007bff',
+            color: '#ffffff',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        
+    onClick={() => setShowLeaderboard(!showLeaderboard)}>
+        {showLeaderboard ? 'Hide Leaderboard' : 'View Leaderboard'}
+      </button>
   {showLeaderboard && (
     <table className="table table-striped table-hover">
 <table className="table table-striped table-hover">
 <thead className="thead-dark">
 <tr>
-<th scope="col">#</th>
+<th scope="col">Rank</th>
 <th scope="col">Address</th>
 <th scope="col">Multiplier</th>
 </tr>
@@ -101,7 +138,20 @@ useEffect(() => {
         rank: index + 1,
       }));
       setLeaderboardData(sortedData);
-    });
+    }).catch(error => {
+          
+          fetch('https://backend-rose-xi.vercel.app/getusers')
+    .then(response => response.json())
+    .then(data => {
+      const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
+        ...item,
+        rank: index + 1,
+      }));
+      setLeaderboardData(sortedData);
+    })
+      
+
+        });
 }, []);
   
   
@@ -127,12 +177,24 @@ updateNetworthValue(currentCounterValue)
       fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
         .then(response => response.json())
         .then(createdUserData => {
-          alert(`Created new user with ID ${newUserId} and counter ${counter}`);
+          console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
         })
-        .catch(error => alert('Error creating user:', error));
+        .catch(error => {
+          
+          console.log('Error creating user:', error)
+      checkUserExists(userId);
+
+        }
+              
+        });
     }
   })
-  .catch(error => alert('Error fetching user:', error));
+  .catch(error => {
+          
+          console.log('Error creating user:', error)
+      checkUserExists(userId);
+
+        });
   };
 
   return (
@@ -140,7 +202,6 @@ updateNetworthValue(currentCounterValue)
   {isLoggedIn ? (
     <div>
      <div className="wallet-balances">
-  <h2>Wallet Balances</h2>
   <p>
     <span>Multiplier:</span>
     <span>{netWorthValue} MUL</span>
