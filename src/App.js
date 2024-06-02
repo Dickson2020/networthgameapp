@@ -53,7 +53,7 @@ const MyComponentWrapper = () => {
 const MyComponent = () => {
   const isLoggedIn = useIsLoggedIn();
   const userWallets = useUserWallets();
-  alert(JSON.stringify(userWallets));
+  console.log(JSON.stringify(userWallets)); // Use console.log instead of alert
 
   const checkUserExists = (userId) => {
     fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
