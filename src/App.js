@@ -21,7 +21,22 @@ const queryClient = new QueryClient();
 
 export default function App() {
 
+const [userIdValue, updateUserIdValue] = useState("");
 
+const checkUserExists = (userId) => {
+  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter);
+        alert("fetched user: " + userData.counter);
+      } else {
+        alert("User not found");
+      }
+    })
+    .catch(error => alert('Error fetching user:', error));
+};
+  
   
   return (
     <DynamicContextProvider
