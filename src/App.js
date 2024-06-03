@@ -192,16 +192,11 @@ useEffect(() => {
     .then(response => response.json())
     .then(userData => {
       if (userData) {
-        const currentCounterValue = parseInt(userData.counter);
+        const currentCounterValue = parseInt(userData.counter)+1;
         console.log(userData);
   console.log("user id: "+userData.user_id)    
- fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${currentCounterValue+1}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log("user updated with ID: "+data);
-        })
-        .catch(error => console.log('Error creating user:', error));
-     
+ fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
+        .then(response => console.log("update res: "+response)
         updateNetworthValue(currentCounterValue);
       } else {
         const newUserId = userId; // Replace with the actual new user ID
