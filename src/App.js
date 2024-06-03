@@ -88,7 +88,7 @@ const [userIdValue, updateUserIdValue] = useState("");
   const [netWorthValue, updateNetworthValue] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 const { tokenBalances, isLoading, isError, error } = useTokenBalances();
-
+if(tokenBalances){
   if(tokenBalances.length > 0){
   alert(JSON.stringify(tokenBalances))
 
@@ -96,6 +96,7 @@ const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
   setTotalBalance(total);
   }
+}
   const Leaderboard = () => {
 
       const [showLeaderboard, setShowLeaderboard] = useState(false);
