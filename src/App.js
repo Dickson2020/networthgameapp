@@ -100,13 +100,13 @@ const [connectedId, setConnectedId] = useState("");
 
   
 if(tokenBalances){
-  if(tokenBalances.length > 0){
+  
   alert(JSON.stringify(tokenBalances))
 
   const total = tokenBalances.reduce((acc, current) => acc + current.balance, 0);
 
   setTotalBalance(total);
-  }
+  
 }
   const Leaderboard = () => {
 
