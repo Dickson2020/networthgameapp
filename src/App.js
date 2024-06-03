@@ -86,11 +86,15 @@ const MyComponent = () => {
 const [userIdValue, updateUserIdValue] = useState("");
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [netWorthValue, updateNetworthValue] = useState(1);
-  
+  const [totalBalance, setTotalBalance] = useState(0);
 const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
-  if(tokenBalances){
+  if(tokenBalances.length > 0){
   alert(JSON.stringify(tokenBalances))
+
+  const total = tokenBalances.reduce((acc, current) => acc + current.balance, 0);
+
+  setTotalBalance(total);
   }
   const Leaderboard = () => {
 
@@ -206,8 +210,13 @@ useEffect(() => {
   </p>
   <p>
     <span>Networth:</span>
-    <span>{netWorthValue} NET</span>
-  </p>
+    <span>
+  {totalBalance + netWorthValue} NET
+  <span style={{ color: 'green', fontSize: 'smaller' }}>
+    (+ {netWorthValue.toLocaleString()} mul)
+  </span>
+</span>
+    </p>
 </div>
 
 <Leaderboard/>
