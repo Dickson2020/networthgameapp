@@ -38,7 +38,7 @@ export default function App() {
     if (userData) {
       const currentCounterValue = parseInt(userData.counter);
 
- fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${userId}&counter=${currentCounterValue}`)
+ fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${currentCounterValue}`)
         .then(response => response.json())
         .then(createdUserData => {
           console.log(` user updated with ID`);
