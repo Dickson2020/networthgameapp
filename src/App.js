@@ -33,8 +33,7 @@ export default function App() {
         56: ['metamask', 'walletconnect'],
         80001: ['metamask', 'walletconnect'],
       },
-      initialAuthenticationMode: 'connect-only',
-      events: {
+       events: {
       
         onAuthSuccess: (args) => {
           const userId = args.primaryWallet.address
