@@ -97,7 +97,7 @@ const [userIdValue, updateUserIdValue] = useState("");
 const [connectedId, setConnectedId] = useState("");
   
   const { tokenBalances, isLoading, isError, error } = useTokenBalances();
-
+/*
   
 if(tokenBalances){
   
@@ -108,6 +108,7 @@ if(tokenBalances){
   setTotalBalance(total);
   
 }
+  */
   const Leaderboard = () => {
 
       const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -193,11 +194,11 @@ useEffect(() => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
         console.log(userData);
-  console.log("user id: "+userId)    
+  console.log("user id: "+userData.user_id)    
  fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${currentCounterValue+1}`)
         .then(response => response.json())
-        .then(createdUserData => {
-          console.log(` user updated with ID`);
+        .then(data => {
+          console.log("user updated with ID: "+data);
         })
         .catch(error => console.log('Error creating user:', error));
      
