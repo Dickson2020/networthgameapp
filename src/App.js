@@ -89,8 +89,9 @@ const [userIdValue, updateUserIdValue] = useState("");
   
 const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
+  if(tokenBalances){
   alert(JSON.stringify(tokenBalances))
- 
+  }
   const Leaderboard = () => {
 
       const [showLeaderboard, setShowLeaderboard] = useState(false);
