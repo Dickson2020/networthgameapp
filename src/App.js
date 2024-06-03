@@ -101,7 +101,7 @@ const [connectedId, setConnectedId] = useState("");
   
 if(tokenBalances){
   
-  alert(JSON.stringify(tokenBalances))
+  console.log(JSON.stringify(tokenBalances))
 
   const total = tokenBalances.reduce((acc, current) => acc + current.balance, 0);
 
@@ -192,6 +192,15 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
+        console.log(userData);
+  console.log("user id: "+userId)    
+ fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${currentCounterValue+1}`)
+        .then(response => response.json())
+        .then(createdUserData => {
+          console.log(` user updated with ID`);
+        })
+        .catch(error => console.log('Error creating user:', error));
+     
         updateNetworthValue(currentCounterValue);
       } else {
         const newUserId = userId; // Replace with the actual new user ID
