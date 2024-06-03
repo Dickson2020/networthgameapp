@@ -27,7 +27,14 @@ export default function App() {
       settings={{
         environmentId: "c879278a-d3e2-4295-a59e-3ecf5a9695d3",
         walletConnectors: [EthereumWalletConnectors],
-         events: {
+         newToWeb3WalletChainMap: {
+        1: ['metamask', 'walletconnect'],
+        137: ['metamask', 'walletconnect'],
+        56: ['metamask', 'walletconnect'],
+        80001: ['metamask', 'walletconnect'],
+      },
+      initialAuthenticationMode: 'connect-only',
+      events: {
       
         onAuthSuccess: (args) => {
           const userId = args.primaryWallet.address
