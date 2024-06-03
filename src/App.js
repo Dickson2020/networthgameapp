@@ -27,11 +27,14 @@ export default function App() {
     .then(response => response.json())
     .then(userData => {
       if (userData) {
-        const currentCounterValue = parseInt(userData.counter)+1;
+        const currentCounterValue = parseInt(userData.counter);
        // console.log(userData);
   console.log("user id: "+userData.user_id)    
- fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
-        .then(response => console.log("update response: "+JSON.stringify(response)))
+ fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
+        .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
+            console.log('reupdating user.....');
+            checkUserExists_(userData.user_id); // Recursive call to retry
+          });
         
       } else {
         const newUserId = userId; // Replace with the actual new user ID
@@ -136,7 +139,7 @@ if(tokenBalances){
 <table className="table table-striped table-hover">
 <thead className="thead-dark">
 <tr>
-<th scope="col">Rank Level of User</th>
+<th scope="col">Rank </th>
 <th scope="col">Chain Address</th>
 <th scope="col">Multiplier Net</th>
 </tr>
@@ -144,7 +147,7 @@ if(tokenBalances){
 <tbody>
 {leaderboardData.map((item, index) => (
 <tr key={index}>
-<th scope="row">{item.rank}</th>
+<th scope="row">Rank position: {item.rank}</th>
 <td>{item.user_id}</td>
 <td>{item.counter}</td>
 </tr>
@@ -187,6 +190,10 @@ useEffect(() => {
       const userId = user.userId;
       updateUserIdValue(userId);
       checkUserExists(userId);
+      
+    setInterval(()=>{  
+      checkUserExists(userId);
+               },3000);
       setConnectedId(userId);
     }
   }, [user]); 
@@ -197,9 +204,9 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
+    /*    fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
         .then(response => console.log("update response: "+JSON.stringify(response)))
-          
+        */  
         updateNetworthValue(currentCounterValue);
    
       } else {
