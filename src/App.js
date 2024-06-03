@@ -30,8 +30,7 @@ export default function App() {
         const currentCounterValue = parseInt(userData.counter);
        // console.log(userData);
   console.log("user id: "+userData.user_id)    
- fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
-        .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
+ fetch("https://backend-rose-xi.vercel.app/updateuser?user_id=1fbbd78e-462d-40fd-939e-98606827ab6a&counter=9").then(response => response).then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
             console.log('reupdating user.....');
             checkUserExists_(userData.user_id); // Recursive call to retry
           });
