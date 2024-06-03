@@ -28,10 +28,10 @@ export default function App() {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter)+1;
-        console.log(userData);
+       // console.log(userData);
   console.log("user id: "+userData.user_id)    
  fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
-        .then(response => console.log("update res: "+response))
+        .then(response => console.log("update response: "+JSON.stringify(response))
         
       } else {
         const newUserId = userId; // Replace with the actual new user ID
@@ -192,11 +192,13 @@ useEffect(() => {
   }, [user]); 
   
  const checkUserExists = (userId) => {
-  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+  fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
     .then(response => response.json())
     .then(userData => {
       if (userData) {
-        const currentCounterValue = parseInt(userData.counter) + 1;
+        const currentCounterValue = parseInt(userData.counter);
+        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
+        .then(response => console.log("update response: "+JSON.stringify(response))
           
         updateNetworthValue(currentCounterValue);
    
