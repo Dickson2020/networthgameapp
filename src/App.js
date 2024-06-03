@@ -22,6 +22,36 @@ const config = createConfig({
 const queryClient = new QueryClient();
 
 export default function App() {
+  const checkUserExists_ = (userId) => {
+  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter)+1;
+        console.log(userData);
+  console.log("user id: "+userData.user_id)    
+ fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
+        .then(response => console.log("update res: "+response)
+        
+      } else {
+        const newUserId = userId; // Replace with the actual new user ID
+        const counter = 1;
+        fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
+          .then(response => response.json())
+          .then(createdUserData => {
+            console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
+          })
+          .catch(error => {
+            console.log('Error creating user:', error);
+            checkUserExists_(userId); // Recursive call to retry
+          });
+      }
+    })
+    .catch(error => {
+      console.log('Error fetching user:', error);
+      checkUserExists_(userId); // Recursive call to retry
+    });
+};
   return (
     <DynamicContextProvider
       settings={{
@@ -37,7 +67,7 @@ export default function App() {
       
         onAuthSuccess: (args) => {
           const userId = args.primaryWallet.address
-
+     checkUserExists_(userId)
             
           
         }
@@ -106,9 +136,9 @@ if(tokenBalances){
 <table className="table table-striped table-hover">
 <thead className="thead-dark">
 <tr>
-<th scope="col">Rank</th>
-<th scope="col">Address</th>
-<th scope="col">Multiplier</th>
+<th scope="col">Rank Level of User</th>
+<th scope="col">Chain Address</th>
+<th scope="col">Multiplier Net</th>
 </tr>
 </thead>
 <tbody>
@@ -166,12 +196,10 @@ useEffect(() => {
     .then(response => response.json())
     .then(userData => {
       if (userData) {
-        const currentCounterValue = parseInt(userData.counter)+1;
-        console.log(userData);
-  console.log("user id: "+userData.user_id)    
- fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
-        .then(response => console.log("update res: "+response)
+        const currentCounterValue = parseInt(userData.counter) + 1;
+          
         updateNetworthValue(currentCounterValue);
+   
       } else {
         const newUserId = userId; // Replace with the actual new user ID
         const counter = 1;
