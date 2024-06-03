@@ -9,6 +9,9 @@ import { mainnet } from "viem/chains";
 import { DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
 import './App.css';
+import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
+
+//const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
 const config = createConfig({
   chains: [mainnet],
