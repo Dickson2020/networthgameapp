@@ -31,7 +31,7 @@ export default function App() {
         console.log(userData);
   console.log("user id: "+userData.user_id)    
  fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+currentCounterValue)
-        .then(response => console.log("update res: "+response)
+        .then(response => console.log("update res: "+response))
         
       } else {
         const newUserId = userId; // Replace with the actual new user ID
