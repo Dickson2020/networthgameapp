@@ -1,4 +1,4 @@
-Æimport React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
