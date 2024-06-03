@@ -38,33 +38,7 @@ export default function App() {
         onAuthSuccess: (args) => {
           const userId = args.primaryWallet.address
 
-            fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
-  .then(response => response.json())
-  .then(userData => {
-    if (userData) {
-      const currentCounterValue = parseInt(userData.counter) + 1
- console.log(userData);
-  console.log("user id: "+userId)    
- fetch(`https://backend-rose-xi.vercel.app/updateuser?user_id=${userId}&counter=${currentCounterValue}`)
-        .then(response => response.json())
-        .then(createdUserData => {
-          console.log(` user updated with ID`);
-        })
-        .catch(error => console.log('Error creating user:', error));
-      
-    } else {
-      const newUserId = userId; // Replace with the actual new user ID
-      const counter = 1;
-      fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
-        .then(response => response.json())
-        .then(createdUserData => {
-          console.log(`Created new user with ID`);
-        })
-        .catch(error => console.log('Error creating user:', error));
-    }
-  })
-  .catch(error => console.log('Error fetching user:', error));
-
+            
           
         }
       }
