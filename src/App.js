@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+Æimport React, { useState, useEffect } from 'react';
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
@@ -10,8 +10,6 @@ import { DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-reac
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
 import './App.css';
 import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
-
-//const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 
 const config = createConfig({
   chains: [mainnet],
@@ -88,7 +86,11 @@ const MyComponent = () => {
 const [userIdValue, updateUserIdValue] = useState("");
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [netWorthValue, updateNetworthValue] = useState(1);
-    
+  
+const { tokenBalances, isLoading, isError, error } = useTokenBalances();
+
+  alert(JSON.stringify(tokenBalances))
+ 
   const Leaderboard = () => {
 
       const [showLeaderboard, setShowLeaderboard] = useState(false);
