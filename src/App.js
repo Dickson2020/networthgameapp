@@ -87,7 +87,11 @@ const [userIdValue, updateUserIdValue] = useState("");
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [netWorthValue, updateNetworthValue] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-const { tokenBalances, isLoading, isError, error } = useTokenBalances();
+const [connectedId, setConnectedId] = useState("");
+  
+  const { tokenBalances, isLoading, isError, error } = useTokenBalances();
+
+  
 if(tokenBalances){
   if(tokenBalances.length > 0){
   alert(JSON.stringify(tokenBalances))
@@ -171,6 +175,7 @@ useEffect(() => {
       const userId = user.userId;
       updateUserIdValue(userId);
       checkUserExists(userId);
+      setConnectedId(userId);
     }
   }, [user]); 
   
@@ -205,7 +210,12 @@ useEffect(() => {
   {isLoggedIn ? (
     <div>
      <div className="wallet-balances">
-  <p>
+<p>
+    <span>Account ID:</span>
+    <span>{connectedId} </span>
+  </p>
+    
+    <p>
     <span>Multiplier:</span>
     <span>{netWorthValue} MUL</span>
   </p>
