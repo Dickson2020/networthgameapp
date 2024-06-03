@@ -11,7 +11,8 @@
   "react-dom": "18.2.0",
   "react-scripts": "^5.0.1",
   "viem": "^2.8.4",
-  "wagmi": "^2.5.7"
+  "wagmi": "^2.5.7",
+  "rpc-websockets": "7.11.0"
   
   },
   "overrides": {
