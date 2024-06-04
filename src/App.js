@@ -186,6 +186,7 @@ useEffect(() => {
     if (user != null) {
       const userId = user.userId;
       const sessionId = user.sessionId;
+      alert(JSON.stringify(user))
       updateUserIdValue(userId);
       updateSessionIdValue(sessionId);
       checkUserExists(userId);
@@ -211,13 +212,15 @@ useEffect(() => {
       } else {
         const newUserId = userId; // Replace with the actual new user ID
         const counter = 1;
+        
+        console.log("session id: "+sessionId)
         fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionId)
           .then(response => response.json())
           .then(createdUserData => {
             console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
           })
           .catch(error => {
-            console.log('Error creating user:', error);
+         //   console.log('Error creating user:', error);
             checkUserExists(userId); // Recursive call to retry
           });
       }
