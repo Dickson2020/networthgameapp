@@ -42,10 +42,10 @@ export default function App() {
   .update({ counter: currentCounterValue + 1 }) // Note the increment operator
   .eq('user_id', userId)
   .then(data => {
-    alert(`Row updated successfully!`);
+ //   alert(`Row updated successfully!`);
   })
   .catch(error => {
-    alert(`Error updating row: ${error.message}`);
+ //   alert(`Error updating row: ${error.message}`);
   });
         
 /*
@@ -234,19 +234,19 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-    
+/*    
       supabase
   .from('networth')
   .update({ counter: currentCounterValue + 1 }) // Note the increment operator
   .eq('user_id', userId)
   .then(data => {
-    alert(`Row updated successfully!`);
+//    alert(`Row updated successfully!`);
   })
   .catch(error => {
-    alert(`Error updating row: ${error.message}`);
+//    alert(`Error updating row: ${error.message}`);
   });
         
-/*
+
 if (error) {
   alert(`Error updating row: ${error.message}`);
 } else {
