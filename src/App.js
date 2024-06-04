@@ -126,7 +126,7 @@ if(tokenBalances){
 };
 
 useEffect(() => {
-  fetch('https://backend-b1mysx38i-net-worth-games-projects.vercel.app/getusers')
+  fetch('https://backend-r7ednevaf-net-worth-games-projects.vercel.app/getusers')
     .then(response => response.json())
     .then(data => {
       const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
@@ -136,7 +136,7 @@ useEffect(() => {
       setLeaderboardData(sortedData);
     }).catch(error => {
           
-          fetch('https://backend-b1mysx38i-net-worth-games-projects.vercel.app/getusers')
+          fetch('https://backend-r7ednevaf-net-worth-games-projects.vercel.app/getusers')
     .then(response => response.json())
     .then(data => {
       const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
