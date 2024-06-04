@@ -99,7 +99,7 @@ const [userIdValue, updateUserIdValue] = useState("");
   const [netWorthValue, updateNetworthValue] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 const [connectedId, setConnectedId] = useState("loading");
-  const [sessionId, updateSessionIdValue] = useState("")
+  const [sessionIdValue, setSessionIdValue] = useState("")
   const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 /*
   
@@ -186,9 +186,11 @@ useEffect(() => {
     if (user != null) {
       const userId = user.userId;
       const session_id = user.sessionId;
-      alert(JSON.stringify(user))
+      
       updateUserIdValue(userId);
-      updateSessionIdValue(session_id);
+      setSessionIdValue(session_id);
+      alert("session id: "+session_id)
+      alert("session id x: "+sessionIdValue)
       checkUserExists(userId);
       setConnectedId(userId)
   }
@@ -201,8 +203,8 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-      if(userData.sessionId != sessionId){
-        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&sessionId="+sessionId+"&counter="+(currentCounterValue + 1))
+      if(userData.sessionId != sessionIdValue){
+        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&sessionId="+sessionIdValue+"&counter="+(currentCounterValue + 1))
         .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
             console.log('Error updating user:', error);
             checkUserExists(userId); // Recursive call to retry
@@ -215,7 +217,7 @@ useEffect(() => {
         const counter = 1;
         
         console.log("session id: "+sessionId)
-        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionId)
+        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionIdValue)
           .then(response => response.json())
           .then(createdUserData => {
             console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
