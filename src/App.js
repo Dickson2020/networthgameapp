@@ -189,7 +189,7 @@ useEffect(() => {
       updateUserIdValue(userId);
       updateSessionIdValue(sessionId);
       checkUserExists(userId);
-      
+  }
     
   }, [user]); 
   
