@@ -168,7 +168,7 @@ useEffect(() => {
     
   }, [user]); 
   
- const checkUserExists = (userId, session_id) => {
+ const checkUserExists = async (userId, session_id) => {
 // alert("session id: "+session_id)
    
    
