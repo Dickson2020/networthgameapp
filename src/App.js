@@ -118,7 +118,7 @@ if(tokenBalances){
       const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   return (
-    <div className="leaderboard">
+    <div style={{padding:"20px"}}>
   <button
           style={{
             backgroundColor: '#007bff',
@@ -233,20 +233,20 @@ useEffect(() => {
     <div>
      <div className="wallet-balances">
 <p>
-    <span>Account ID:</span>
+    <span>Account ID: </span>
     <span>{connectedId} </span>
   </p>
     
     <p>
-    <span>Multiplier:</span>
+    <span>Multiplier: </span>
     <span>{netWorthValue} MUL</span>
   </p>
   <p>
-    <span>Networth:</span>
+    <span>Networth: </span>
     <span>
   {totalBalance + netWorthValue} NET
-  <span style={{ color: 'green', fontSize: 'smaller' }}>
-    (+ {netWorthValue.toLocaleString()} mul)
+  <span style={{ fontSize:'11px', color: 'green', fontSize: 'smaller' }}>
+    (+ {netWorthValue.toLocaleString()} login multiplier)
   </span>
 </span>
     </p>
