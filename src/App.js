@@ -175,7 +175,7 @@ useEffect(() => {
         const currentCounterValue = parseInt(userData.counter);
     
       
-        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
+        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+connectedId+"&counter="+(currentCounterValue + 1))
         .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
             console.log('Error updating user:', error);
             checkUserExists(userId, session_id); // Recursive call to retry
@@ -212,7 +212,7 @@ useEffect(() => {
      <div className="wallet-balances">
 <p>
     <span>Account ID: </span>
-    <span>{connectedId} </span>
+    <span> {connectedId} </span>
   </p>
     
     <p>
