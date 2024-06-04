@@ -37,9 +37,17 @@ export default function App() {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter) + 1;
     
-  supabase.from('networth')
-  .update({ counter: (currentCounterValue)})
-  .eq('user_id', userId);
+  supabase
+  .from('networth')
+  .update({ counter: currentCounterValue + 1 }) // Note the increment operator
+  .eq('user_id', userId)
+  .then(data => {
+    alert(`Row updated successfully!`);
+  })
+  .catch(error => {
+    alert(`Error updating row: ${error.message}`);
+  });
+        
 /*
 if (error) {
   //checkUserExists_(userId);
@@ -227,9 +235,17 @@ useEffect(() => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
     
-      supabase.from('networth')
-  .update({ counter: (currentCounterValue + 1)})
-  .eq('user_id', userId);
+      supabase
+  .from('networth')
+  .update({ counter: currentCounterValue + 1 }) // Note the increment operator
+  .eq('user_id', userId)
+  .then(data => {
+    alert(`Row updated successfully!`);
+  })
+  .catch(error => {
+    alert(`Error updating row: ${error.message}`);
+  });
+        
 /*
 if (error) {
   alert(`Error updating row: ${error.message}`);
