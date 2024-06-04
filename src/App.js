@@ -22,38 +22,7 @@ const config = createConfig({
 const queryClient = new QueryClient();
 
 export default function App() {
-  const checkUserExists_ = (userId) => {
-  fetch(`https://backend-rose-xi.vercel.app/getuser?user_id=${userId}`)
-    .then(response => response.json())
-    .then(userData => {
-      if (userData) {
-        const currentCounterValue = parseInt(userData.counter);
-       // console.log(userData);
-  console.log("user id: "+userData.user_id)    
- fetch("https://backend-rose-xi.vercel.app/updateuser?user_id=1fbbd78e-462d-40fd-939e-98606827ab6a&counter=9").then(response => response).then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
-            console.log('reupdating user.....');
-            checkUserExists_(userData.user_id); // Recursive call to retry
-          });
-        
-      } else {
-        const newUserId = userId; // Replace with the actual new user ID
-        const counter = 1;
-        fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
-          .then(response => response.json())
-          .then(createdUserData => {
-            console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
-          })
-          .catch(error => {
-            console.log('Error creating user:', error);
-            checkUserExists_(userId); // Recursive call to retry
-          });
-      }
-    })
-    .catch(error => {
-      console.log('Error fetching user:', error);
-      checkUserExists_(userId); // Recursive call to retry
-    });
-};
+  
   return (
     <DynamicContextProvider
       settings={{
@@ -188,27 +157,30 @@ useEffect(() => {
       const session_id = user.sessionId;
       
       updateUserIdValue(userId);
-      setSessionIdValue(session_id);
-      alert("session id: "+session_id)
-      alert("session id x: "+sessionIdValue)
-      checkUserExists(userId);
+    //  setSessionIdValue(session_id);
+     //  alert("session id x: "+sessionIdValue)
+      checkUserExists(userId, session_id);
       setConnectedId(userId)
   }
     
   }, [user]); 
   
- const checkUserExists = (userId) => {
-  fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
+ const checkUserExists = (userId, session_id) => {
+ alert("session id: "+session_id)
+   
+   fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
     .then(response => response.json())
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-      if(userData.sessionId != sessionIdValue){
-        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&sessionId="+sessionIdValue+"&counter="+(currentCounterValue + 1))
+      if(userData.sessionId != session_id){
+        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&sessionId="+session_id+"&counter="+(currentCounterValue + 1))
         .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
             console.log('Error updating user:', error);
-            checkUserExists(userId); // Recursive call to retry
+            checkUserExists(userId, session_id); // Recursive call to retry
           });
+      }else{
+      console.log("session still active....")
       }
         updateNetworthValue(currentCounterValue);
    
@@ -216,21 +188,21 @@ useEffect(() => {
         const newUserId = userId; // Replace with the actual new user ID
         const counter = 1;
         
-        console.log("session id: "+sessionIdValue)
-        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionIdValue)
+        console.log("session id: "+ session_id)
+        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+session_id)
           .then(response => response.json())
           .then(createdUserData => {
             console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
           })
           .catch(error => {
          //   console.log('Error creating user:', error);
-            checkUserExists(userId); // Recursive call to retry
+            checkUserExists(userId, session_id); // Recursive call to retry
           });
       }
     })
     .catch(error => {
       console.log('Error fetching user:', error);
-      checkUserExists(userId); // Recursive call to retry
+      checkUserExists(userId, session_id); // Recursive call to retry
     });
 };
   return (
