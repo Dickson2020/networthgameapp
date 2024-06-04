@@ -26,7 +26,7 @@ const queryClient = new QueryClient();
 
 export default function App() {
 
-  async function checkUserExists_(userId){
+  const checkUserExists_ = async (userId) =>{
 // alert("session id: "+session_id)
    
    
@@ -37,18 +37,17 @@ export default function App() {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter) + 1;
     
-      const { data, error } = await supabase
-  .from('networth')
+  supabase.from('networth')
   .update({ counter: (currentCounterValue)})
   .eq('user_id', userId);
-
+/*
 if (error) {
-  checkUserExists_(userId);
+  //checkUserExists_(userId);
   alert(`Error updating row: ${error.message}`);
 } else {
   alert(`Row updated successfully!`);
 }
-        
+  */      
         
        // updateNetworthValue(currentCounterValue);
    
@@ -64,13 +63,13 @@ if (error) {
           })
           .catch(error => {
          //   console.log('Error creating user:', error);
-            checkUserExists_(userId); // Recursive call to retry
+          checkUserExists_(userId); // Recursive call to retry
           });
       }
     })
     .catch(error => {
       console.log('Error fetching user:', error);
-      checkUserExists_(userId); // Recursive call to retry
+    checkUserExists_(userId); // Recursive call to retry
     });
 };
 
@@ -217,7 +216,7 @@ useEffect(() => {
     
   }, [user]); 
   
- async function checkUserExists(userId, session_id){
+ const checkUserExists =  (userId, session_id) =>{
 // alert("session id: "+session_id)
    
    
@@ -228,18 +227,17 @@ useEffect(() => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
     
-      const { data, error } = await supabase
-  .from('networth')
+      supabase.from('networth')
   .update({ counter: (currentCounterValue + 1)})
   .eq('user_id', userId);
-
+/*
 if (error) {
   alert(`Error updating row: ${error.message}`);
 } else {
   alert(`Row updated successfully!`);
 }
         
-        
+   */     
         updateNetworthValue(currentCounterValue);
    
       } else {
