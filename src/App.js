@@ -10,6 +10,9 @@ import { DynamicEmbeddedWidget, useDynamicContext } from "@dynamic-labs/sdk-reac
 import { useIsLoggedIn } from '@dynamic-labs/sdk-react-core';
 import './App.css';
 import { useTokenBalances } from "@dynamic-labs/sdk-react-core";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://vviemvanlsxkhlcjrofx.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2aWVtdmFubHN4a2hsY2pyb2Z4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY5MjUxMjgsImV4cCI6MjAzMjUwMTEyOH0.WyzYnC4Rg9zMYT-T5pLVc6vMg58AN98SGpqbCnZzQNA");
 
 const config = createConfig({
   chains: [mainnet],
@@ -168,11 +171,7 @@ useEffect(() => {
  const checkUserExists = (userId, session_id) => {
 // alert("session id: "+session_id)
    
-   fetch("https://backend-rose-xi.vercel.app/updateuser?user_id=1fbbd78e-462d-40fd-939e-98606827ab6a&counter=70")
-        .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
-            console.log('Error updating user:', error);
-            checkUserExists(userId, session_id); // Recursive call to retry
-          });
+   
    
    fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
     .then(response => response.json())
@@ -180,7 +179,16 @@ useEffect(() => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
     
-      
+      const { data, error } = await supabase
+  .from('networth')
+  .update({ counter: (currentCounterValue + 1)})
+  .eq('user_id', userId);
+
+if (error) {
+  alert(`Error updating row: ${error.message}`);
+} else {
+  alert(`Row updated successfully!`);
+}
         
         
         updateNetworthValue(currentCounterValue);
