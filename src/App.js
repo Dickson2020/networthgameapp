@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+lpimport React, { useState, useEffect } from 'react';
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
@@ -234,7 +234,7 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-/*    
+    
       supabase
   .from('networth')
   .update({ counter: currentCounterValue + 1 }) // Note the increment operator
@@ -245,7 +245,7 @@ useEffect(() => {
   .catch(error => {
 //    alert(`Error updating row: ${error.message}`);
   });
-        
+     /*   
 
 if (error) {
   alert(`Error updating row: ${error.message}`);
