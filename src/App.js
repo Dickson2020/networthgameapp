@@ -25,6 +25,55 @@ const config = createConfig({
 const queryClient = new QueryClient();
 
 export default function App() {
+
+  async function checkUserExists_(userId){
+// alert("session id: "+session_id)
+   
+   
+   
+   fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
+    .then(response => response.json())
+    .then(userData => {
+      if (userData) {
+        const currentCounterValue = parseInt(userData.counter) + 1;
+    
+      const { data, error } = await supabase
+  .from('networth')
+  .update({ counter: (currentCounterValue)})
+  .eq('user_id', userId);
+
+if (error) {
+  checkUserExists_(userId);
+  alert(`Error updating row: ${error.message}`);
+} else {
+  alert(`Row updated successfully!`);
+}
+        
+        
+       // updateNetworthValue(currentCounterValue);
+   
+      } else {
+        const newUserId = userId; // Replace with the actual new user ID
+        const counter = 1;
+        
+     //   console.log("session id: "+ session_id)
+        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter)
+          .then(response => response.json())
+          .then(createdUserData => {
+            console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
+          })
+          .catch(error => {
+         //   console.log('Error creating user:', error);
+            checkUserExists_(userId); // Recursive call to retry
+          });
+      }
+    })
+    .catch(error => {
+      console.log('Error fetching user:', error);
+      checkUserExists_(userId); // Recursive call to retry
+    });
+};
+
   
   return (
     <DynamicContextProvider
@@ -39,9 +88,9 @@ export default function App() {
       },
        events: {
       
-        onAuthSuccess: () => {
+        onAuthSuccess: (args) => {
           
-          
+          checkUserExists_(args.primaryWallet.address)
         }
       }
       }}
@@ -168,7 +217,7 @@ useEffect(() => {
     
   }, [user]); 
   
- const checkUserExists = async (userId, session_id) => {
+ async function checkUserExists(userId, session_id){
 // alert("session id: "+session_id)
    
    
