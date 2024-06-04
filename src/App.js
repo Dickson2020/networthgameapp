@@ -67,10 +67,8 @@ export default function App() {
       },
        events: {
       
-        onAuthSuccess: (args) => {
-          const userId = args.primaryWallet.address
-     checkUserExists_(userId)
-            
+        onAuthSuccess: () => {
+          
           
         }
       }
@@ -101,7 +99,7 @@ const [userIdValue, updateUserIdValue] = useState("");
   const [netWorthValue, updateNetworthValue] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
 const [connectedId, setConnectedId] = useState("");
-  
+  const [sessionId, updateSessionIdValue] = useState("")
   const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 /*
   
@@ -187,14 +185,12 @@ useEffect(() => {
 useEffect(() => {
     if (user != null) {
       const userId = user.userId;
+      const sessionId = user.sessionId;
       updateUserIdValue(userId);
+      updateSessionIdValue(sessionId);
       checkUserExists(userId);
       
-    setInterval(()=>{  
-      checkUserExists(userId);
-               },3000);
-      setConnectedId(userId);
-    }
+    
   }, [user]); 
   
  const checkUserExists = (userId) => {
@@ -203,15 +199,19 @@ useEffect(() => {
     .then(userData => {
       if (userData) {
         const currentCounterValue = parseInt(userData.counter);
-    /*    fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
-        .then(response => console.log("update response: "+JSON.stringify(response)))
-        */  
+      if(userData.sessionId != sessionId){
+        fetch("https://backend-rose-xi.vercel.app/updateuser?user_id="+userData.user_id+"&counter="+(currentCounterValue + 1))
+        .then(response => console.log("update response: "+JSON.stringify(response))).catch(error => {
+            console.log('Error updating user:', error);
+            checkUserExists(userId); // Recursive call to retry
+          });
+      }
         updateNetworthValue(currentCounterValue);
    
       } else {
         const newUserId = userId; // Replace with the actual new user ID
         const counter = 1;
-        fetch(`https://backend-rose-xi.vercel.app/createuser?user_id=${newUserId}&counter=${counter}`)
+        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionId)
           .then(response => response.json())
           .then(createdUserData => {
             console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
