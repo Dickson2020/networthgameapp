@@ -12,7 +12,8 @@
   "react-scripts": "^5.0.1",
   "viem": "^2.8.4",
   "wagmi": "^2.5.7",
-  "rpc-websockets": "7.11.0"
+  "rpc-websockets": "7.11.0",
+  "@supabase/supabase-js": "^2.0.4"
   
   },
   "overrides": {
