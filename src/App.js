@@ -126,7 +126,7 @@ if(tokenBalances){
 };
 
 useEffect(() => {
-  fetch('https://backend-r7ednevaf-net-worth-games-projects.vercel.app/getusers')
+  fetch('https://backend-rose-xi.vercel.app/getusers')
     .then(response => response.json())
     .then(data => {
       const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
@@ -136,7 +136,7 @@ useEffect(() => {
       setLeaderboardData(sortedData);
     }).catch(error => {
           
-          fetch('https://backend-r7ednevaf-net-worth-games-projects.vercel.app/getusers')
+          fetch('https://backend-rose-xi.vercel.app/getusers')
     .then(response => response.json())
     .then(data => {
       const sortedData = data.sort((a, b) => b.counter - a.counter).map((item, index) => ({
@@ -168,7 +168,7 @@ useEffect(() => {
  const checkUserExists = (userId, session_id) => {
 // alert("session id: "+session_id)
    
-   fetch("https://backend-b1mysx38i-net-worth-games-projects.vercel.app/getuser?user_id="+userId)
+   fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
     .then(response => response.json())
     .then(userData => {
       if (userData) {
@@ -189,7 +189,7 @@ useEffect(() => {
         const counter = 1;
         
         console.log("session id: "+ session_id)
-        fetch("https://backend-b1mysx38i-net-worth-games-projects.vercel.app/createuser?user_id="+newUserId+"&counter="+counter)
+        fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter)
           .then(response => response.json())
           .then(createdUserData => {
             console.log(`Created new user with ID ${newUserId} and counter ${counter}`);
