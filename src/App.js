@@ -98,7 +98,7 @@ const [userIdValue, updateUserIdValue] = useState("");
   const [leaderboardData, setLeaderboardData] = useState([]);
   const [netWorthValue, updateNetworthValue] = useState(1);
   const [totalBalance, setTotalBalance] = useState(0);
-const [connectedId, setConnectedId] = useState("");
+const [connectedId, setConnectedId] = useState("loading");
   const [sessionId, updateSessionIdValue] = useState("")
   const { tokenBalances, isLoading, isError, error } = useTokenBalances();
 /*
@@ -185,11 +185,12 @@ useEffect(() => {
 useEffect(() => {
     if (user != null) {
       const userId = user.userId;
-      const sessionId = user.sessionId;
+      const session_id = user.sessionId;
       alert(JSON.stringify(user))
       updateUserIdValue(userId);
-      updateSessionIdValue(sessionId);
+      updateSessionIdValue(session_id);
       checkUserExists(userId);
+      setConnectedId(userId)
   }
     
   }, [user]); 
