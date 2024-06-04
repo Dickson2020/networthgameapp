@@ -216,7 +216,7 @@ useEffect(() => {
         const newUserId = userId; // Replace with the actual new user ID
         const counter = 1;
         
-        console.log("session id: "+sessionId)
+        console.log("session id: "+sessionIdValue)
         fetch("https://backend-rose-xi.vercel.app/createuser?user_id="+newUserId+"&counter="+counter+"&sessionId="+sessionIdValue)
           .then(response => response.json())
           .then(createdUserData => {
