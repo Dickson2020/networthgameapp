@@ -166,7 +166,7 @@ useEffect(() => {
   }, [user]); 
   
  const checkUserExists = (userId, session_id) => {
- alert("session id: "+session_id)
+// alert("session id: "+session_id)
    
    fetch("https://backend-rose-xi.vercel.app/getuser?user_id="+userId)
     .then(response => response.json())
